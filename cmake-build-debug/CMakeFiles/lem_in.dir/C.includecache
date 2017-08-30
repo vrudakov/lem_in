@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/nfs/2016/v/vrudakov/lem-in/./includes/lem-in.h
+../libft/includes/libft.h
+/nfs/2016/v/vrudakov/lem-in/./libft/includes/libft.h
+
+/nfs/2016/v/vrudakov/lem-in/./libft/includes/libft.h
+unistd.h
+-
+string.h
+-
+stdlib.h
+-
+fcntl.h
+-
+limits.h
+-
+
+/nfs/2016/v/vrudakov/lem-in/main.c
+./includes/lem-in.h
+/nfs/2016/v/vrudakov/lem-in/./includes/lem-in.h
+
