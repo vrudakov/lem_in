@@ -80,30 +80,80 @@ void	parcer(t_m *m)
 	free(line);
 }
 
-void	get_ant_num(t_m *m)
+int		get_ant_num(char *ant_num)
 {
-	t_list *at;
 	long long tmp;
 
-	at = m->in_lst;
-	m->in_lst = m->in_lst->next;
-	if (!ft_isdigitstr(at->content))
-		lemin_error(m, "string with ants amount must consist only of digits");
-	tmp = ft_atoll(at->content);
+	if (!ft_isdigitstr(ant_num))
+	{
+		ft_putstr("ERROR: string with ants amount must consist only of digits");
+		free(ant_num);
+		exit(EXIT_FAILURE);
+	}
+	tmp = ft_atoll(ant_num);
 	if (tmp < 0 || tmp > INT_MAX)
-		lemin_error(m , "The amount should be within 0 and INT_MAX");
-	m->ant = (int)tmp;
-	free(at->content);
-	at->content = NULL;
-	free(at);
+	{
+		ft_putstr("ERROR: The amount should be within 0 and INT_MAX");
+		free(ant_num);
+		exit(EXIT_FAILURE);
+	}
+	return (int)(tmp);
+}
+
+int		check_room(char *line)
+{
+	char	**split;
+	int i;
+
+	i = 0;
+	split = ft_strsplit(line, ' ');
+	while (split[i] != NULL)
+		i++;
+	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
+	{
+		ft_putstr("ERROR: wring rooms naming\n");
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }
 
 void	map_in(t_m *m)
 {
-	char *line;
+	char	*line;
+	t_log	log;
 
+	log.ac = 0;
+	log.end = 0;
+	log.start = 0;
+	log.lin = 0;
+	log.room = 0;
 	while (get_next_line(m->fd, &line) > 0 && *line)
 	{
+		if (log.ac == 0)
+			m->ant = get_ant_num(line);
+		if (__builtin_strcmp(line, "##start"))
+		{
+			log.start += 1;
+			if (log.start > 1)
+			{
+				write(1, "ERROR: must be only one start\n", 30);
+				exit(EXIT_FAILURE);
+			}
+		}
+		if (__builtin_strcmp(line, "##end"))
+		{
+			log.end += 1;
+			if (log.end > 1)
+			{
+				write(1, "ERROR: must be only one end\n", 28);
+				exit(EXIT_FAILURE);
+			}
+		}
+		if (log.room == 0 && line[0] != '#' && line[0] != 'L')
+			log.room = check_room(line);
+
+
+
 		if (!(ft_lstaddend(&(m->in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
 			lemin_error(m, "File's malloc failure");
 		free(line);
@@ -118,7 +168,6 @@ void	map_in(t_m *m)
 		plist = plist->next;
 	}
 	plist = m->in_lst;
-	get_ant_num(m);
 }
 
 int		main(void)

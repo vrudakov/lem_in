@@ -14,5 +14,14 @@ typedef	struct	s_m
 
 }				t_m;
 
+typedef	struct	s_log
+{
+	int		ac;
+	int		start;
+	int		end;
+	int 	lin;
+	int 	room;
+
+}				t_log;
 
 #endif //LEM_IN_LEM_IN_H
