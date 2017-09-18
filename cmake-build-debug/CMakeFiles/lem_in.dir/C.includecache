@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/nfs/2016/v/vrudakov/lem-in/./includes/lem-in.h
+/Users/mf840/lem_in/./includes/lem-in.h
 ../libft/includes/libft.h
-/nfs/2016/v/vrudakov/lem-in/./libft/includes/libft.h
+/Users/mf840/lem_in/./libft/includes/libft.h
 
-/nfs/2016/v/vrudakov/lem-in/./libft/includes/libft.h
+/Users/mf840/lem_in/./libft/includes/libft.h
 unistd.h
 -
 string.h
@@ -22,7 +22,7 @@ fcntl.h
 limits.h
 -
 
-/nfs/2016/v/vrudakov/lem-in/main.c
+/Users/mf840/lem_in/main.c
 ./includes/lem-in.h
-/nfs/2016/v/vrudakov/lem-in/./includes/lem-in.h
+/Users/mf840/lem_in/./includes/lem-in.h
 

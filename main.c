@@ -111,10 +111,33 @@ int		check_room(char *line)
 		i++;
 	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
 	{
-		ft_putstr("ERROR: wring rooms naming\n");
+		ft_putstr("ERROR: wrong rooms naming\n");
 		exit(EXIT_FAILURE);
 	}
 	return (0);
+}
+
+int		check_comment(char *line, t_log *log)
+{
+	if (__builtin_strcmp(line, "##start"))
+	{
+		log->start += 1;
+		if (log->start > 1)
+		{
+			write(1, "ERROR: must be only one start\n", 30);
+			exit(EXIT_FAILURE);
+		}
+	}
+	if (__builtin_strcmp(line, "##end"))
+	{
+		log->end += 1;
+		if (log->end > 1)
+		{
+			write(1, "ERROR: must be only one end\n", 28);
+			exit(EXIT_FAILURE);
+		}
+	}
+	return (1);
 }
 
 void	map_in(t_m *m)
@@ -131,28 +154,13 @@ void	map_in(t_m *m)
 	{
 		if (log.ac == 0)
 			m->ant = get_ant_num(line);
-		if (__builtin_strcmp(line, "##start"))
+		if (line[0] == '#')
 		{
-			log.start += 1;
-			if (log.start > 1)
-			{
-				write(1, "ERROR: must be only one start\n", 30);
-				exit(EXIT_FAILURE);
-			}
-		}
-		if (__builtin_strcmp(line, "##end"))
-		{
-			log.end += 1;
-			if (log.end > 1)
-			{
-				write(1, "ERROR: must be only one end\n", 28);
-				exit(EXIT_FAILURE);
-			}
+			check_comment(line, &log);
+			continue ;
 		}
 		if (log.room == 0 && line[0] != '#' && line[0] != 'L')
 			log.room = check_room(line);
-
-
 
 		if (!(ft_lstaddend(&(m->in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
 			lemin_error(m, "File's malloc failure");
