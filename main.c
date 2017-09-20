@@ -1,4 +1,5 @@
 #include "./includes/lem-in.h"
+t_m		*g_m;
 void	free_all(t_list *list)
 {
 	while(list)
@@ -17,70 +18,7 @@ int		lemin_error(t_m *m, char *s)
 }
 
 
-long long			ft_atoll(const char *str)
-{
-	long long	n;
-	int			sign;
-
-	n = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r' ||
-		   *str == '\f' || *str == '\v')
-		++str;
-	sign = (*str == '-') ? -1 : 1;
-	if (*str == '+' || *str == '-')
-		++str;
-	while (*str >= '0' && *str <= '9')
-	{
-		n = n * 10 + (*str - 48) % 10;
-		++str;
-	}
-	return (n * sign);
-}
-
-int 	ant_num(t_m *m)
-{
-	char	*line;
-
-	if (get_next_line(m->fd, &line) > 0)
-	{
-		if (!(ft_lstaddend(&(m->list), ft_lstnew(line, ft_strlen(line) + 1))))
-				lemin_error(m, "File's malloc failure");
-		m->ant = (ft_isdigitstr(line) ? ft_atoi(line) : 0);
-		free(line);
-		if (m->ant < 1)
-			lemin_error(m, "Invalid ants number, first line must be number of ants");
-	}
-	return (1);
-}
-
-void	parcer(t_m *m)
-{
-	char	*line;
-	int		room;
-
-	room = ant_num(m);
-	while (get_next_line(m->fd, &line) > 0 && *line)
-	{
-
-
-//		if (ft_strprefix(line, "##"))
-//			type = get_room_type(e, line);
-//		else if (*line == '#')
-//			ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1));
-//		else
-//		{
-//			if (room)
-//				room = parse_room(e, line, type, room);
-//			if (!room && !parse_tube(e, line))
-//				break ;
-//			if (!(ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1))))
-//				ft_error(e, "File's malloc failure");
-//			type = 0;
-	}
-	free(line);
-}
-
-int		get_ant_num(char *ant_num)
+int		get_ant_num(char *ant_num, t_log *log)
 {
 	long long tmp;
 
@@ -91,12 +29,13 @@ int		get_ant_num(char *ant_num)
 		exit(EXIT_FAILURE);
 	}
 	tmp = ft_atoll(ant_num);
-	if (tmp < 0 || tmp > INT_MAX)
+	if (tmp < 1 || tmp > INT_MAX)
 	{
-		ft_putstr("ERROR: The amount should be within 0 and INT_MAX");
+		ft_putstr("ERROR: The amount should be within 1 and INT_MAX");
 		free(ant_num);
 		exit(EXIT_FAILURE);
 	}
+	log->ac = 1;
 	return (int)(tmp);
 }
 
@@ -104,6 +43,8 @@ int		check_room(char *line)
 {
 	char	**split;
 	int i;
+	t_room	room;
+
 
 	i = 0;
 	split = ft_strsplit(line, ' ');
@@ -114,6 +55,11 @@ int		check_room(char *line)
 		ft_putstr("ERROR: wrong rooms naming\n");
 		exit(EXIT_FAILURE);
 	}
+	room.name = ft_strdup(split[0]);
+	free(split[0]);
+	free(split[1]);
+	free(split[2]);
+	g_m->rooms = ft_lstnew( &room , sizeof(room));
 	return (0);
 }
 
@@ -137,60 +83,109 @@ int		check_comment(char *line, t_log *log)
 			exit(EXIT_FAILURE);
 		}
 	}
-	return (1);
+//	if (log
 }
 
-void	map_in(t_m *m)
+void	map_in()
 {
 	char	*line;
 	t_log	log;
+
 
 	log.ac = 0;
 	log.end = 0;
 	log.start = 0;
 	log.lin = 0;
 	log.room = 0;
-	while (get_next_line(m->fd, &line) > 0 && *line)
+	while (get_next_line(g_m->fd, &line) > 0 && *line)
 	{
 		if (log.ac == 0)
-			m->ant = get_ant_num(line);
+			g_m->ant = get_ant_num(line, &log);
 		if (line[0] == '#')
-		{
 			check_comment(line, &log);
-			continue ;
-		}
 		if (log.room == 0 && line[0] != '#' && line[0] != 'L')
 			log.room = check_room(line);
 
-		if (!(ft_lstaddend(&(m->in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
-			lemin_error(m, "File's malloc failure");
+		if (!(ft_lstaddend(&(g_m->in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+			lemin_error(g_m, "File's malloc failure");
 		free(line);
 	}
 	t_list *plist;
 
-	plist = m->in_lst;
+	plist = g_m->in_lst;
 	while (plist)
 	{
 		ft_putstr(plist->content);
 		ft_putstr("\n");
 		plist = plist->next;
 	}
-	plist = m->in_lst;
+	plist = g_m->in_lst;
 }
+
 
 int		main(void)
 {
-	t_m		m;
 
-	m.fd = open ("map.txt", O_RDONLY);
-	if(m.fd < 0)
+
+	g_m->fd = open ("map.txt", O_RDONLY);
+	if(g_m->fd < 0)
 	{
 		ft_putstr("can not open");
 		return (0);
 	}
-	m.list = NULL;
-	m.in_lst = NULL;
+	g_m->list = NULL;
+	g_m->in_lst = NULL;
 //	parcer(&m);
-	map_in(&m);
+	map_in();
 }
 
+
+
+
+
+void	parcer(t_m *m)
+{
+	char	*line;
+	int		room;
+
+//	room = ant_num(m);
+	while (get_next_line(g_m->fd, &line) > 0 && *line)
+	{
+
+
+//		if (ft_strprefix(line, "##"))
+//			type = get_room_type(e, line);
+//		else if (*line == '#')
+//			ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1));
+//		else
+//		{
+//			if (room)
+//				room = parse_room(e, line, type, room);
+//			if (!room && !parse_tube(e, line))
+//				break ;
+//			if (!(ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1))))
+//				ft_error(e, "File's malloc failure");
+//			type = 0;
+	}
+	free(line);
+}
+
+
+
+
+
+int 	ant_num(t_m *m)
+{
+	char	*line;
+
+	if (get_next_line(m->fd, &line) > 0)
+	{
+		if (!(ft_lstaddend(&(m->list), ft_lstnew(line, ft_strlen(line) + 1))))
+			lemin_error(m, "File's malloc failure");
+		m->ant = (ft_isdigitstr(line) ? ft_atoi(line) : 0);
+		free(line);
+		if (m->ant < 1)
+			lemin_error(m, "Invalid ants number, first line must be number of ants");
+	}
+	return (1);
+}

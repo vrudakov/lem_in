@@ -90,5 +90,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				ft_lstaddend(t_list **alst, t_list *new);
 int				ft_strprefix(const char *str, const char *prefix);
 int				get_next_line(const int fd, char **line);
+long long		ft_atoll(const char *str);
 
 #endif
