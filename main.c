@@ -1,5 +1,6 @@
 #include "./includes/lem-in.h"
-t_m		*g_m;
+t_m		g_m;
+
 void	free_all(t_list *list)
 {
 	while(list)
@@ -8,6 +9,7 @@ void	free_all(t_list *list)
 		list = list->next;
 	}
 }
+
 int		lemin_error(t_m *m, char *s)
 {
 	ft_putstr("ERROR: ");
@@ -39,7 +41,7 @@ int		get_ant_num(char *ant_num, t_log *log)
 	return (int)(tmp);
 }
 
-int		check_room(char *line)
+int		check_room(char *line, int action)
 {
 	char	**split;
 	int i;
@@ -56,27 +58,43 @@ int		check_room(char *line)
 		exit(EXIT_FAILURE);
 	}
 	room.name = ft_strdup(split[0]);
+	if (action == START)
+		g_m.start = ft_strdup(split[0]);
+	if (action == END)
+		g_m.end = ft_strdup(split[0]);
 	free(split[0]);
 	free(split[1]);
 	free(split[2]);
-	g_m->rooms = ft_lstnew( &room , sizeof(room));
+	g_m.rooms = ft_lstnew( &room , sizeof(room));
 	return (0);
 }
 
-int		check_comment(char *line, t_log *log)
+void		check_comment(char *line, t_log *log)
 {
-	if (__builtin_strcmp(line, "##start"))
+	if (__builtin_strcmp(line, "##start") == 0)
 	{
 		log->start += 1;
+		if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+			lemin_error(&g_m, "File's malloc failure");
+		if (get_next_line(g_m.fd, &line) > 0 && *line) {
+			check_room(line, START);
+		free(line);
+		}
 		if (log->start > 1)
 		{
 			write(1, "ERROR: must be only one start\n", 30);
 			exit(EXIT_FAILURE);
 		}
 	}
-	if (__builtin_strcmp(line, "##end"))
+	if (__builtin_strcmp(line, "##end") == 0)
 	{
 		log->end += 1;
+		if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+			lemin_error(&g_m, "File's malloc failure");
+		if (get_next_line(g_m.fd, &line) > 0 && *line) {
+			check_room(line, END);
+		}
+		free(line);
 		if (log->end > 1)
 		{
 			write(1, "ERROR: must be only one end\n", 28);
@@ -97,29 +115,30 @@ void	map_in()
 	log.start = 0;
 	log.lin = 0;
 	log.room = 0;
-	while (get_next_line(g_m->fd, &line) > 0 && *line)
+	while (get_next_line(g_m.fd, &line) > 0 && *line)
 	{
-		if (log.ac == 0)
-			g_m->ant = get_ant_num(line, &log);
-		if (line[0] == '#')
+		if (line[0] == '#') {
 			check_comment(line, &log);
-		if (log.room == 0 && line[0] != '#' && line[0] != 'L')
-			log.room = check_room(line);
-
-		if (!(ft_lstaddend(&(g_m->in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
-			lemin_error(g_m, "File's malloc failure");
+		}
+		if (log.room == 0 && line[0] != '#' && line[0] != 'L' && g_m.ant != 0) {
+			log.room = check_room(line, NONE);
+		}
+		if (log.ac == 0)
+			g_m.ant = get_ant_num(line, &log);
+		if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+			lemin_error(&g_m, "File's malloc failure");
 		free(line);
 	}
 	t_list *plist;
 
-	plist = g_m->in_lst;
+	plist = g_m.in_lst;
 	while (plist)
 	{
 		ft_putstr(plist->content);
 		ft_putstr("\n");
 		plist = plist->next;
 	}
-	plist = g_m->in_lst;
+	plist = g_m.in_lst;
 }
 
 
@@ -127,14 +146,15 @@ int		main(void)
 {
 
 
-	g_m->fd = open ("map.txt", O_RDONLY);
-	if(g_m->fd < 0)
+	g_m.fd = open ("map.txt", O_RDONLY);
+	if(g_m.fd < 0)
 	{
 		ft_putstr("can not open");
 		return (0);
 	}
-	g_m->list = NULL;
-	g_m->in_lst = NULL;
+	g_m.list = NULL;
+	g_m.in_lst = NULL;
+	g_m.ant = 0;
 //	parcer(&m);
 	map_in();
 }
@@ -149,7 +169,7 @@ void	parcer(t_m *m)
 	int		room;
 
 //	room = ant_num(m);
-	while (get_next_line(g_m->fd, &line) > 0 && *line)
+	while (get_next_line(g_m.fd, &line) > 0 && *line)
 	{
 
 
