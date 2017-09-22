@@ -1,3 +1,4 @@
+#include <printf.h>
 #include "./includes/lem-in.h"
 t_m		g_m;
 
@@ -19,6 +20,20 @@ int		lemin_error(t_m *m, char *s)
 	return (-1);
 }
 
+void	free_split(char **split, int i)
+{
+	int	c;
+
+	c = 0;
+	if (i > 0)
+	{
+		while (c < i)
+		{
+			free(split[c]);
+			c++;
+		}
+	}
+}
 
 int		get_ant_num(char *ant_num, t_log *log)
 {
@@ -41,20 +56,57 @@ int		get_ant_num(char *ant_num, t_log *log)
 	return (int)(tmp);
 }
 
+int		find_room(char *room, char *neighbor)
+{
+	t_list	*tmp;
+	t_room	*test;
+
+	tmp = g_m.rooms;
+	while (tmp)
+	{
+		test = tmp->content;
+		if ( ft_strcmp(test->name,
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void	check_connection(char	*conn)
+{
+	char **split;
+	int i;
+
+	i = 0;
+	split = ft_strsplit(conn, '-');
+	while (split[i] != NULL)
+		i++;
+	if (i != 2) {
+		ft_putstr("ERROR: wrong rooms linkage\n");
+		free_split(split, i);
+		exit(EXIT_FAILURE);
+	}
+	//Добавить связи в соседей структуры комнаты и проерить их ланичие
+}
+
 int		check_room(char *line, int action)
 {
 	char	**split;
 	int i;
-	t_room	room;
-
+	t_room room;
 
 	i = 0;
 	split = ft_strsplit(line, ' ');
 	while (split[i] != NULL)
 		i++;
+	if (i == 1 && ft_strchr(split[0], '-'))
+	{
+		check_connection(split[0]);
+		return (1);
+	}
 	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
 	{
 		ft_putstr("ERROR: wrong rooms naming\n");
+		free_split(split, i);
 		exit(EXIT_FAILURE);
 	}
 	room.name = ft_strdup(split[0]);
@@ -62,10 +114,11 @@ int		check_room(char *line, int action)
 		g_m.start = ft_strdup(split[0]);
 	if (action == END)
 		g_m.end = ft_strdup(split[0]);
-	free(split[0]);
-	free(split[1]);
-	free(split[2]);
-	g_m.rooms = ft_lstnew( &room , sizeof(room));
+	free_split(split, i);
+//	g_m.rooms = ft_lstnew( &room , sizeof(room));
+	if (!(ft_lstaddend(&(g_m.rooms), ft_lstnew( &room , sizeof(room)))))
+		lemin_error(&g_m, "File's malloc failure");
+//	free(room.name);
 	return (0);
 }
 
@@ -78,7 +131,9 @@ void		check_comment(char *line, t_log *log)
 			lemin_error(&g_m, "File's malloc failure");
 		if (get_next_line(g_m.fd, &line) > 0 && *line) {
 			check_room(line, START);
-		free(line);
+			if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+				lemin_error(&g_m, "File's malloc failure");
+			free(line);
 		}
 		if (log->start > 1)
 		{
@@ -93,15 +148,16 @@ void		check_comment(char *line, t_log *log)
 			lemin_error(&g_m, "File's malloc failure");
 		if (get_next_line(g_m.fd, &line) > 0 && *line) {
 			check_room(line, END);
+			if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+				lemin_error(&g_m, "File's malloc failure");
+			free(line);
 		}
-		free(line);
 		if (log->end > 1)
 		{
 			write(1, "ERROR: must be only one end\n", 28);
 			exit(EXIT_FAILURE);
 		}
 	}
-//	if (log
 }
 
 void	map_in()
@@ -125,7 +181,8 @@ void	map_in()
 		}
 		if (log.ac == 0)
 			g_m.ant = get_ant_num(line, &log);
-		if (!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+		if (ft_strcmp(line, "##start") && ft_strcmp(line, "##end") &&
+				!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
 			lemin_error(&g_m, "File's malloc failure");
 		free(line);
 	}
@@ -139,6 +196,17 @@ void	map_in()
 		plist = plist->next;
 	}
 	plist = g_m.in_lst;
+	t_list *tmp;
+	tmp = g_m.rooms;
+	t_room  *r;
+	/* проверка имен комнат.
+	while (tmp)
+	{
+		r = tmp->content;
+		printf("%s\n", r->name);
+		tmp = tmp->next;
+	}
+	 */
 }
 
 
@@ -157,55 +225,4 @@ int		main(void)
 	g_m.ant = 0;
 //	parcer(&m);
 	map_in();
-}
-
-
-
-
-
-void	parcer(t_m *m)
-{
-	char	*line;
-	int		room;
-
-//	room = ant_num(m);
-	while (get_next_line(g_m.fd, &line) > 0 && *line)
-	{
-
-
-//		if (ft_strprefix(line, "##"))
-//			type = get_room_type(e, line);
-//		else if (*line == '#')
-//			ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1));
-//		else
-//		{
-//			if (room)
-//				room = parse_room(e, line, type, room);
-//			if (!room && !parse_tube(e, line))
-//				break ;
-//			if (!(ft_lstaddend(&(e->f), ft_lstnew(line, ft_strlen(line) + 1))))
-//				ft_error(e, "File's malloc failure");
-//			type = 0;
-	}
-	free(line);
-}
-
-
-
-
-
-int 	ant_num(t_m *m)
-{
-	char	*line;
-
-	if (get_next_line(m->fd, &line) > 0)
-	{
-		if (!(ft_lstaddend(&(m->list), ft_lstnew(line, ft_strlen(line) + 1))))
-			lemin_error(m, "File's malloc failure");
-		m->ant = (ft_isdigitstr(line) ? ft_atoi(line) : 0);
-		free(line);
-		if (m->ant < 1)
-			lemin_error(m, "Invalid ants number, first line must be number of ants");
-	}
-	return (1);
 }
