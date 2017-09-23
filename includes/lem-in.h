@@ -9,7 +9,6 @@
 
 typedef	struct	s_m
 {
-	t_list	*list;
 	t_list	*in_lst;
 	t_list	*rooms;
 	char 	*start;

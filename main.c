@@ -56,7 +56,7 @@ int		get_ant_num(char *ant_num, t_log *log)
 	return (int)(tmp);
 }
 
-int		find_room(char *room, char *neighbor)
+int		find_room(char *room, char *neighbor, int s)
 {
 	t_list	*tmp;
 	t_room	*test;
@@ -65,10 +65,18 @@ int		find_room(char *room, char *neighbor)
 	while (tmp)
 	{
 		test = tmp->content;
-		if ( ft_strcmp(test->name,
+		if (!ft_strcmp(test->name, room))
+		{
+			if (!(ft_lstaddend(&(test->n) , ft_lstnew(neighbor, ft_strlen(neighbor) + 1))))
+				lemin_error(&g_m, "File's malloc failure");
+			if (s != 0)
+				find_room(neighbor, room, 0);
+			return (1);
+		}
 		tmp = tmp->next;
 	}
-	return (1);
+	lemin_error(&g_m, "ERROR: wrong room name in links list");
+	exit(EXIT_FAILURE);
 }
 
 void	check_connection(char	*conn)
@@ -85,7 +93,26 @@ void	check_connection(char	*conn)
 		free_split(split, i);
 		exit(EXIT_FAILURE);
 	}
-	//Добавить связи в соседей структуры комнаты и проерить их ланичие
+	find_room(split[0], split[1], 1);
+}
+
+int 	check_room_list(char *in_room)
+{
+	t_room *room;
+	t_list	*r_check;
+
+	r_check = g_m.rooms;
+	while (r_check)
+	{
+		room = r_check->content;
+		if (!ft_strcmp(room->name,in_room))
+		{
+			ft_putstr("ERROR: rooms must have unique name");
+			exit(EXIT_FAILURE);
+		}
+		r_check = r_check->next;
+	}
+	return (0);
 }
 
 int		check_room(char *line, int action)
@@ -109,16 +136,16 @@ int		check_room(char *line, int action)
 		free_split(split, i);
 		exit(EXIT_FAILURE);
 	}
+	check_room_list(split[0]);
 	room.name = ft_strdup(split[0]);
+	room.n = NULL;
 	if (action == START)
 		g_m.start = ft_strdup(split[0]);
 	if (action == END)
 		g_m.end = ft_strdup(split[0]);
 	free_split(split, i);
-//	g_m.rooms = ft_lstnew( &room , sizeof(room));
 	if (!(ft_lstaddend(&(g_m.rooms), ft_lstnew( &room , sizeof(room)))))
 		lemin_error(&g_m, "File's malloc failure");
-//	free(room.name);
 	return (0);
 }
 
@@ -173,11 +200,13 @@ void	map_in()
 	log.room = 0;
 	while (get_next_line(g_m.fd, &line) > 0 && *line)
 	{
+		if (!ft_strcmp(line, ""))
+			lemin_error(&g_m, "line can't be empty");
 		if (line[0] == '#') {
 			check_comment(line, &log);
 		}
 		if (log.room == 0 && line[0] != '#' && line[0] != 'L' && g_m.ant != 0) {
-			log.room = check_room(line, NONE);
+			/*log.room = */check_room(line, NONE);
 		}
 		if (log.ac == 0)
 			g_m.ant = get_ant_num(line, &log);
@@ -207,6 +236,20 @@ void	map_in()
 		tmp = tmp->next;
 	}
 	 */
+	while (g_m.rooms)
+	{
+		r = g_m.rooms->content;
+		printf("%s -> ", r->name);
+		while (r->n)
+		{
+			printf(" | %s | ", r->n->content);
+			r->n = r->n->next;
+		}
+		printf("\n");
+		g_m.rooms = g_m.rooms->next;
+	}
+
+
 }
 
 
@@ -215,14 +258,14 @@ int		main(void)
 
 
 	g_m.fd = open ("map.txt", O_RDONLY);
-	if(g_m.fd < 0)
-	{
+	if(g_m.fd < 0) {
 		ft_putstr("can not open");
 		return (0);
 	}
-	g_m.list = NULL;
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
 //	parcer(&m);
 	map_in();
 }
+
+проверить чтоб был start и end и чтоб не было их по 2
