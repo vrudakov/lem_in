@@ -123,6 +123,33 @@ lem_in/fast:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/build
 .PHONY : lem_in/fast
 
+checkers.o: checkers.c.o
+
+.PHONY : checkers.o
+
+# target to build an object file
+checkers.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.o
+.PHONY : checkers.c.o
+
+checkers.i: checkers.c.i
+
+.PHONY : checkers.i
+
+# target to preprocess a source file
+checkers.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.i
+.PHONY : checkers.c.i
+
+checkers.s: checkers.c.s
+
+.PHONY : checkers.s
+
+# target to generate assembly for a file
+checkers.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.s
+.PHONY : checkers.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -150,6 +177,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/main.c.s
 .PHONY : main.c.s
 
+serve.o: serve.c.o
+
+.PHONY : serve.o
+
+# target to build an object file
+serve.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.o
+.PHONY : serve.c.o
+
+serve.i: serve.c.i
+
+.PHONY : serve.i
+
+# target to preprocess a source file
+serve.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.i
+.PHONY : serve.c.i
+
+serve.s: serve.c.s
+
+.PHONY : serve.s
+
+# target to generate assembly for a file
+serve.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.s
+.PHONY : serve.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +213,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lem_in"
+	@echo "... checkers.o"
+	@echo "... checkers.i"
+	@echo "... checkers.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... serve.o"
+	@echo "... serve.i"
+	@echo "... serve.s"
 .PHONY : help
 
 

@@ -82,10 +82,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/nfs/2016/v/vrudakov/lem-in/checkers.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/nfs/2016/v/vrudakov/lem-in/includes/lem-in.h">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/nfs/2016/v/vrudakov/lem-in/main.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/nfs/2016/v/vrudakov/lem-in/serve.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/nfs/2016/v/vrudakov/lem-in/CMakeLists.txt">
