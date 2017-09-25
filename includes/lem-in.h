@@ -21,6 +21,7 @@ typedef struct	s_room
 {
 	char	*name;
 	t_list	*n;
+	int 	status;
 }				t_room;
 
 typedef	struct	s_log

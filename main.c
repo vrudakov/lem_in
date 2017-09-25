@@ -1,7 +1,21 @@
 #include <printf.h>
 #include "./includes/lem-in.h"
 
-
+void	room_err(char **split, t_log *log, int i)
+{
+	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
+	{
+		ft_putstr("ERROR: wrong rooms naming\n");
+		free_split(split, i);
+		exit(EXIT_FAILURE);
+	}
+	if (log->room == 1)
+	{
+		ft_putstr("ERROR: usage:  number_of_ants -> the_rooms -> the_links\n");
+		free_split(split, i);
+		exit(EXIT_FAILURE);
+	}
+}
 
 int		check_room(char *line, int action, t_log *log)
 {
@@ -19,25 +33,22 @@ int		check_room(char *line, int action, t_log *log)
 		log->room = 1;
 		return (1);
 	}
-	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
-	{
-		ft_putstr("ERROR: wrong rooms naming\n");
-		free_split(split, i);
-		exit(EXIT_FAILURE);
-	}
-	if (log->room == 1)
-	{
-		ft_putstr("ERROR: usage:  number_of_ants -> the_rooms -> the_links\n");
-		free_split(split, i);
-		exit(EXIT_FAILURE);
-	}
+	room_err(split, log, i);
 	check_room_list(split[0]);
 	room.name = ft_strdup(split[0]);
 	room.n = NULL;
 	if (action == START)
+	{
 		g_m.start = ft_strdup(split[0]);
+		room.status = START;
+	}
 	if (action == END)
+	{
+		room.status = END;
 		g_m.end = ft_strdup(split[0]);
+	}
+	if (action == NONE)
+		room.status = NONE;
 	free_split(split, i);
 	if (!(ft_lstaddend(&(g_m.rooms), ft_lstnew( &room , sizeof(room)))))
 		lemin_error(&g_m, "File's malloc failure");
@@ -55,7 +66,7 @@ void	map_in()
 	log.start = 0;
 	log.lin = 0;
 	log.room = 0;
-	while (get_next_line(g_m.fd, &line) > 0 && *line)
+	while (get_next_line(g_m.fd, &line) > 0 /*&& *line*/)
 	{
 		if (!ft_strcmp(line, ""))
 			lemin_error(&g_m, "line can't be empty");
