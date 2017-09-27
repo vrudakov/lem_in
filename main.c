@@ -139,5 +139,6 @@ int		main(void)
 	g_m.ant = 0;
 //	parcer(&m);
 	map_in();
+	find_all_path();
 }
 

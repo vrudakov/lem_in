@@ -50,4 +50,8 @@ int		check_room(char *line, int action, t_log *log);
 int 	check_room_list(char *in_room);
 int		get_ant_num(char *ant_num, t_log *log);
 
+
+
+void	find_all_path();
+
 #endif //LEM_IN_LEM_IN_H
