@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/mf840/lem_in/algo.c" "/Users/mf840/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/algo.c.o"
-  "/Users/mf840/lem_in/checkers.c" "/Users/mf840/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/checkers.c.o"
-  "/Users/mf840/lem_in/main.c" "/Users/mf840/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/main.c.o"
-  "/Users/mf840/lem_in/serve.c" "/Users/mf840/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/serve.c.o"
+  "/nfs/2016/v/vrudakov/lemin/algo.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/algo.c.o"
+  "/nfs/2016/v/vrudakov/lemin/checkers.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/checkers.c.o"
+  "/nfs/2016/v/vrudakov/lemin/main.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/main.c.o"
+  "/nfs/2016/v/vrudakov/lemin/serve.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/serve.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

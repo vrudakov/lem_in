@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/mf840/lem_in
+CMAKE_SOURCE_DIR = /nfs/2016/v/vrudakov/lemin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/mf840/lem_in/cmake-build-debug
+CMAKE_BINARY_DIR = /nfs/2016/v/vrudakov/lemin/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lem_in.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/lem_in.dir/flags.make
 
 CMakeFiles/lem_in.dir/main.c.o: CMakeFiles/lem_in.dir/flags.make
 CMakeFiles/lem_in.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mf840/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lem_in.dir/main.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/main.c.o   -c /Users/mf840/lem_in/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lem_in.dir/main.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/main.c.o   -c /nfs/2016/v/vrudakov/lemin/main.c
 
 CMakeFiles/lem_in.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/main.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mf840/lem_in/main.c > CMakeFiles/lem_in.dir/main.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/v/vrudakov/lemin/main.c > CMakeFiles/lem_in.dir/main.c.i
 
 CMakeFiles/lem_in.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/main.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mf840/lem_in/main.c -o CMakeFiles/lem_in.dir/main.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/v/vrudakov/lemin/main.c -o CMakeFiles/lem_in.dir/main.c.s
 
 CMakeFiles/lem_in.dir/main.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/lem_in.dir/main.c.o.provides.build: CMakeFiles/lem_in.dir/main.c.o
 
 CMakeFiles/lem_in.dir/checkers.c.o: CMakeFiles/lem_in.dir/flags.make
 CMakeFiles/lem_in.dir/checkers.c.o: ../checkers.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mf840/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lem_in.dir/checkers.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/checkers.c.o   -c /Users/mf840/lem_in/checkers.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lem_in.dir/checkers.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/checkers.c.o   -c /nfs/2016/v/vrudakov/lemin/checkers.c
 
 CMakeFiles/lem_in.dir/checkers.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/checkers.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mf840/lem_in/checkers.c > CMakeFiles/lem_in.dir/checkers.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/v/vrudakov/lemin/checkers.c > CMakeFiles/lem_in.dir/checkers.c.i
 
 CMakeFiles/lem_in.dir/checkers.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/checkers.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mf840/lem_in/checkers.c -o CMakeFiles/lem_in.dir/checkers.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/v/vrudakov/lemin/checkers.c -o CMakeFiles/lem_in.dir/checkers.c.s
 
 CMakeFiles/lem_in.dir/checkers.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/lem_in.dir/checkers.c.o.provides.build: CMakeFiles/lem_in.dir/checker
 
 CMakeFiles/lem_in.dir/serve.c.o: CMakeFiles/lem_in.dir/flags.make
 CMakeFiles/lem_in.dir/serve.c.o: ../serve.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mf840/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/lem_in.dir/serve.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/serve.c.o   -c /Users/mf840/lem_in/serve.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/lem_in.dir/serve.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/serve.c.o   -c /nfs/2016/v/vrudakov/lemin/serve.c
 
 CMakeFiles/lem_in.dir/serve.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/serve.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mf840/lem_in/serve.c > CMakeFiles/lem_in.dir/serve.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/v/vrudakov/lemin/serve.c > CMakeFiles/lem_in.dir/serve.c.i
 
 CMakeFiles/lem_in.dir/serve.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/serve.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mf840/lem_in/serve.c -o CMakeFiles/lem_in.dir/serve.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/v/vrudakov/lemin/serve.c -o CMakeFiles/lem_in.dir/serve.c.s
 
 CMakeFiles/lem_in.dir/serve.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/lem_in.dir/serve.c.o.provides.build: CMakeFiles/lem_in.dir/serve.c.o
 
 CMakeFiles/lem_in.dir/algo.c.o: CMakeFiles/lem_in.dir/flags.make
 CMakeFiles/lem_in.dir/algo.c.o: ../algo.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mf840/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/lem_in.dir/algo.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/algo.c.o   -c /Users/mf840/lem_in/algo.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/lem_in.dir/algo.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/algo.c.o   -c /nfs/2016/v/vrudakov/lemin/algo.c
 
 CMakeFiles/lem_in.dir/algo.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/algo.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mf840/lem_in/algo.c > CMakeFiles/lem_in.dir/algo.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/v/vrudakov/lemin/algo.c > CMakeFiles/lem_in.dir/algo.c.i
 
 CMakeFiles/lem_in.dir/algo.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/algo.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mf840/lem_in/algo.c -o CMakeFiles/lem_in.dir/algo.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/v/vrudakov/lemin/algo.c -o CMakeFiles/lem_in.dir/algo.c.s
 
 CMakeFiles/lem_in.dir/algo.c.o.requires:
 
@@ -170,7 +170,7 @@ lem_in: CMakeFiles/lem_in.dir/algo.c.o
 lem_in: CMakeFiles/lem_in.dir/build.make
 lem_in: ../libft/libft.a
 lem_in: CMakeFiles/lem_in.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mf840/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable lem_in"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable lem_in"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lem_in.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -190,6 +190,6 @@ CMakeFiles/lem_in.dir/clean:
 .PHONY : CMakeFiles/lem_in.dir/clean
 
 CMakeFiles/lem_in.dir/depend:
-	cd /Users/mf840/lem_in/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/mf840/lem_in /Users/mf840/lem_in /Users/mf840/lem_in/cmake-build-debug /Users/mf840/lem_in/cmake-build-debug /Users/mf840/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/DependInfo.cmake --color=$(COLOR)
+	cd /nfs/2016/v/vrudakov/lemin/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /nfs/2016/v/vrudakov/lemin /nfs/2016/v/vrudakov/lemin /nfs/2016/v/vrudakov/lemin/cmake-build-debug /nfs/2016/v/vrudakov/lemin/cmake-build-debug /nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lem_in.dir/depend
 
