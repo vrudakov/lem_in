@@ -109,9 +109,10 @@ void	map_in()
 		tmp = tmp->next;
 	}
 	 */
-	while (g_m.rooms)
+/*
+	while (tmp)
 	{
-		r = g_m.rooms->content;
+		r = tmp->content;
 		printf("%s -> ", r->name);
 		while (r->n)
 		{
@@ -119,9 +120,9 @@ void	map_in()
 			r->n = r->n->next;
 		}
 		printf("\n");
-		g_m.rooms = g_m.rooms->next;
+		tmp = tmp->next;
 	}
-
+*/
 
 }
 
@@ -139,6 +140,15 @@ int		main(void)
 	g_m.ant = 0;
 //	parcer(&m);
 	map_in();
-	find_all_path();
-}
+	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
 
+	t_list *plist;
+
+	plist = g_m.apath;
+	while (plist)
+	{
+		ft_putstr(plist->content);
+		ft_putstr("\n");
+		plist = plist->next;
+	}
+}

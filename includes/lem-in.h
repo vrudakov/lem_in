@@ -9,6 +9,7 @@ typedef	struct	s_m
 {
 	t_list	*in_lst;
 	t_list	*rooms;
+	t_list	*apath;
 	char 	*start;
 	char 	*end;
 
@@ -50,8 +51,8 @@ int		check_room(char *line, int action, t_log *log);
 int 	check_room_list(char *in_room);
 int		get_ant_num(char *ant_num, t_log *log);
 
-
-
+t_list			*get_node_by_name(char *name);
+int	  	find_apath(t_room *room, char *c_path);
 void	find_all_path();
 
 #endif //LEM_IN_LEM_IN_H
