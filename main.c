@@ -126,6 +126,55 @@ void	map_in()
 
 }
 
+int 	calc_room(char *path)
+{
+	char **split;
+	int i;
+
+	i = 0;
+	split = ft_strsplit(path, '#');
+	while (split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	return (i);
+}
+
+void swap(t_list *a, t_list *b)
+{
+	void *temp;
+
+	temp = a->content;
+	a->content = b->content;
+	b->content = temp;
+}
+
+void bubble_sort(t_list *start)
+{
+	int swapped;
+	t_list *ptr1;
+	t_list *lptr;
+
+	lptr = NULL;
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		ptr1 = start;
+
+		while (ptr1->next != lptr)
+		{
+			if (calc_room(ptr1->content) > calc_room(ptr1->next->content))
+			{
+				swap(ptr1, ptr1->next);
+				swapped = 1;
+			}
+			ptr1 = ptr1->next;
+		}
+		lptr = ptr1;
+	}
+}
 
 int		main(void)
 {
@@ -143,7 +192,7 @@ int		main(void)
 	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
 
 	t_list *plist;
-
+	bubble_sort(g_m.apath);
 	plist = g_m.apath;
 	while (plist)
 	{
@@ -151,4 +200,6 @@ int		main(void)
 		ft_putstr("\n");
 		plist = plist->next;
 	}
+	get_pack();
+
 }

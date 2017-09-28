@@ -33,7 +33,7 @@ int		n_in_str(char *path, char *n)
 	int i;
 	int c;
 
-	split = ft_strsplit(path, '|');
+	split = ft_strsplit(path, '#');
 	i = 0;
 	c = 0;
 	while (split[i])
@@ -72,7 +72,7 @@ int	  	find_apath(t_room *room, char *c_path)
 	neighbours = room->n;
 	c_path = ft_append(c_path, room->name,
 					 ft_strlen(c_path), ft_strlen(room->name) + 1);
-	c_path = ft_append(c_path, "|", ft_strlen(c_path), 1);
+	c_path = ft_append(c_path, "#", ft_strlen(c_path), 1);
 	if (room->status == END)
 	{
 		if (!(ft_lstaddend(&(g_m.apath), ft_lstnew(c_path, ft_strlen(c_path) + 1))))

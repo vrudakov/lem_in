@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
 
         main.c
-        includes/lem-in.h checkers.c serve.c algo.c)
+        includes/lem-in.h checkers.c serve.c algo.c way.c)
 
 add_executable(lem_in ${SOURCE_FILES})
 

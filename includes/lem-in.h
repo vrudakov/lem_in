@@ -54,5 +54,8 @@ int		get_ant_num(char *ant_num, t_log *log);
 t_list			*get_node_by_name(char *name);
 int	  	find_apath(t_room *room, char *c_path);
 void	find_all_path();
+void	get_pack();
+int 	calc_room(char *path);
+void	swap(t_list *a, t_list *b);
 
 #endif //LEM_IN_LEM_IN_H
