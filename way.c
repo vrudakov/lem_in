@@ -2,47 +2,66 @@
 #include "./includes/lem-in.h"
 
 
-void unique(char **start)
+int		unique(t_list  *start)
 {
 	int swapped;
-	char *ptr1;
-	char *ptr2;
-	int 	i;
-	int 	j;
+	t_list *ptr1;
+	t_list *lptr;
 
-
-	ptr1 = start[0];
-	ptr2 = start[1];
+	lptr = NULL;
 	swapped = 1;
-	i = 0;
-	/*while(ptr1)
+	while (swapped)
 	{
+		swapped = 0;
+		ptr1 = start;
 
-		ways_n = ways->next;
-		while(ways_n)
+		while (ptr1->next != lptr)
 		{
-			pathfinder(ways, ways_n);
-			ways_n = ways_n->next;
+			if (ft_strcmp(ptr1->content, ptr1->next->content) == 0)
+				return (0);
+//			if (calc_room(ptr1->content) > calc_room(ptr1->next->content))
+//			{
+//				swap(ptr1, ptr1->next);
+//				swapped = 1;
+//			}
+			ptr1 = ptr1->next;
 		}
-		ways = ways->next;
-	 }*/
+		lptr = ptr1;
+	}
+	return (1);
 }
 
-проверить на паралельность пути , методом пузырьковой сортировки. Удалить начало и старт;
+//проверить на паралельность пути , методом пузырьковой сортировки. Удалить начало и старт;
 
-void	parallels(t_list	*ways, t_list	*ways_n)
+int		parallels(t_list	*ways, t_list	*ways_n)
 {
 	char *all;
 	char **split;
 	char *first;
 	char *second;
+	t_list	*temp;
+	int i;
 
 	first = ways->content;
 	first = __DARWIN_NULL;
-	all = ft_strjoin(ways->content,ways_n->content);
+	temp = NULL;
+	all = ft_strjoin(ways->content, ways_n->content);
 	split = ft_strsplit(all, '#');
-
-
+	i = 0;
+	while (split[i] != NULL)
+	{
+		if (ft_strcmp(split[i], g_m.start) == 0 || ft_strcmp(split[i], g_m.end) == 0 )
+		{
+//			free(split[i]);
+			i++;
+			continue ;
+		}
+		if (!(ft_lstaddend(&(temp), ft_lstnew(split[i], ft_strlen(split[i]) + 1))))
+			lemin_error(&g_m, "File's malloc failure");
+		free(split[i]);
+		i++;
+	}
+	return (unique(temp));
 }
 
 int		pathfinder(t_list	*ways, t_list	*ways_n)

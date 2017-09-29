@@ -58,4 +58,5 @@ void	get_pack();
 int 	calc_room(char *path);
 void	swap(t_list *a, t_list *b);
 
+int		parallels(t_list	*ways, t_list	*ways_n);
 #endif //LEM_IN_LEM_IN_H
