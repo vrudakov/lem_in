@@ -193,17 +193,16 @@ int		main(void)
 
 	t_list *plist;
 	bubble_sort(g_m.apath);
-	/*plist = g_m.apath;
+	plist = g_m.apath;
 	while (plist)
 	{
 		ft_putstr(plist->content);
 		ft_putstr("\n");
 		plist = plist->next;
-	}*/
+	}
+	printf("\n\n");
 	int res;
 
-	res = parallels(g_m.apath, g_m.apath->next);
-	printf("%s\n%s\n%d\n",g_m.apath->content, g_m.apath->next->content,res);
-//	get_pack();
+	get_pack();
 
 }
