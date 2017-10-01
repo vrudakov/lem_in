@@ -90,6 +90,5 @@ int	  	find_apath(t_room *room, char *c_path)
 		neighbours = neighbours->next;
 		find_apath(neighbour, ft_strdup(c_path));
 	}
-
 	return (0);
 }

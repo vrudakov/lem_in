@@ -176,6 +176,7 @@ void bubble_sort(t_list *start)
 	}
 }
 
+
 int		main(void)
 {
 

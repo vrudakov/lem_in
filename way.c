@@ -116,7 +116,37 @@ typedef struct s_pack
 	int 	cap;
 }		t_pack;
 
-void	get_pack() {
+void	calc_throughput(t_pack *pack)
+{
+	t_list	*ways;
+	int		cap;
+	char 	*str;
+	int 	sh;
+	int 	w;
+	int 	i;
+
+	w = 0;
+	ways = pack->parll;
+	cap = 0;
+	while (ways)
+	{
+		i = 0;
+		sh = 0;
+		w++;
+		str = ways->content;
+		while(str[i] != '\0')
+		{
+			if (str[i] == '#')
+				sh++;
+			i++;
+		}
+		cap = sh + (g_m.ant / w);
+		ways = ways->next;
+	}
+}
+
+void	get_pack()
+{
 	t_list *ways;
 	t_list *ways_n;
 	t_pack *pack;
@@ -135,6 +165,7 @@ void	get_pack() {
 		ways_n = g_m.apath;
 		pack[i].parll = ft_lstnew(ways->content, ways->content_size);
 		pathfinder(pack[i].parll, ways_n);
+		calc_throughput(&pack[i]);
 		i++;
 		ways = ways->next;
 	}
