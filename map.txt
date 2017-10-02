@@ -10,6 +10,14 @@ one 23 3
 7 4 8
 ##end
 0 9 5
+8 4 4
+9 4 4
+z 0 0
+x 0 0
+c 0 0
+v 0 0
+b 0 0
+n 0 0
 #another comment
 0-4
 0-6
@@ -23,3 +31,19 @@ one-3
 7-2
 7-4
 6-5
+one-8
+8-9
+9-0
+9-4
+one-z
+z-0
+one-x
+x-0
+one-c
+c-0
+one-v
+v-0
+one-b
+b-0
+one-n
+n-0

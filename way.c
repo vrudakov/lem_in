@@ -86,7 +86,7 @@ int		pathfinder(t_list	*ways, t_list	*ways_n)
 	while(ways_n)
 	{
 		if (check_parall(ways, ways_n))
-			ft_lstaddend(&(ways), ft_lstnew( ways_n->content , sizeof(ways_n->content) + 2));
+			ft_lstaddend(&(ways), ft_lstnew( ways_n->content , ft_strlen(ways_n->content) + 1 ));
 		ways_n = ways_n->next;
 	}
 	printf("set->\n");
@@ -116,6 +116,22 @@ typedef struct s_pack
 	int 	cap;
 }		t_pack;
 
+int get_counter(t_list *pack_ways, int counter, int iteration)
+{
+	t_list *temp;
+
+	temp = pack_ways;
+
+	while (temp != NULL)
+	{
+//		printf("len of path %s is %i\n", (char *) temp->content, get_path_len(temp->content));
+		if (iteration == get_path_len(temp->content))
+			counter++;
+		temp = temp->next;
+	}
+	return counter;
+}
+
 void	calc_throughput(t_pack *pack)
 {
 	t_list	*ways;
@@ -143,6 +159,38 @@ void	calc_throughput(t_pack *pack)
 		cap = sh + (g_m.ant / w);
 		ways = ways->next;
 	}
+	printf("cap -->>> %d \n", cap);
+	int ant_number = g_m.ant;
+	int flow_cap = 0;
+	int counter = 0;
+
+/*
+
+	while (ant_number >= 0)
+	{
+		flow_cap++;
+		counter = get_counter(pack->parll, counter, flow_cap);
+		ant_number = ant_number - counter;
+
+	}
+	printf("cap -->>> %d \n", flow_cap);
+ */
+}
+
+
+int get_path_len(char* path)
+{
+
+	int len = 0;
+	int i = 0;
+
+	while(path[i] != '\0')
+	{
+		if (path[i] == '#')
+			len++;
+		i++;
+	}
+	return len - 1;
 }
 
 void	get_pack()
@@ -186,4 +234,5 @@ void	get_pack()
 //		}
 //		ways = ways->next;
 //	}
+
 
