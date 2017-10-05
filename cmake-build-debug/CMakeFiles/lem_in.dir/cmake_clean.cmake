@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/checkers.c.o"
   "CMakeFiles/lem_in.dir/serve.c.o"
   "CMakeFiles/lem_in.dir/algo.c.o"
+  "CMakeFiles/lem_in.dir/way.c.o"
   "lem_in.pdb"
   "lem_in"
 )

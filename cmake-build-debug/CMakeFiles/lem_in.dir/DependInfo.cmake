@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/v/vrudakov/lemin/checkers.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/checkers.c.o"
   "/nfs/2016/v/vrudakov/lemin/main.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/main.c.o"
   "/nfs/2016/v/vrudakov/lemin/serve.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/serve.c.o"
+  "/nfs/2016/v/vrudakov/lemin/way.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/way.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

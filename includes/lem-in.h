@@ -37,7 +37,11 @@ typedef	struct	s_log
 
 t_m		g_m;
 
-
+typedef struct	s_pack
+{
+	t_list	*parll;
+	int 	cap;
+}				t_pack;
 
 
 void	check_comment(char *line, t_log *log);

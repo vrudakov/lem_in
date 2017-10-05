@@ -97,6 +97,9 @@
 		<Unit filename="/nfs/2016/v/vrudakov/lemin/serve.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/nfs/2016/v/vrudakov/lemin/way.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/nfs/2016/v/vrudakov/lemin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

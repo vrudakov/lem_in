@@ -109,12 +109,7 @@ int		pathfinder(t_list	*ways, t_list	*ways_n)
 	}
 	 */
 }
-typedef struct s_pack
-{
-	char	*c_way;
-	t_list	*parll;
-	int 	cap;
-}		t_pack;
+
 
 int get_counter(t_list *pack_ways, int counter, int iteration)
 {
@@ -132,7 +127,22 @@ int get_counter(t_list *pack_ways, int counter, int iteration)
 	return counter;
 }
 
-void	calc_throughput(t_pack *pack)
+int get_path_len(char* path)
+{
+
+	int len = 0;
+	int i = 0;
+
+	while(path[i] != '\0')
+	{
+		if (path[i] == '#')
+			len++;
+		i++;
+	}
+	return len - 1;
+}
+
+void	calc_throughput_t(t_pack *pack)
 {
 	t_list	*ways;
 	int		cap;
@@ -142,9 +152,9 @@ void	calc_throughput(t_pack *pack)
 	int 	i;
 
 	w = 0;
-	ways = pack->parll;
+//	ways = pack->parll;
 	cap = 0;
-	while (ways)
+	/*while (ways)
 	{
 		i = 0;
 		sh = 0;
@@ -160,6 +170,7 @@ void	calc_throughput(t_pack *pack)
 		ways = ways->next;
 	}
 	printf("cap -->>> %d \n", cap);
+	*/
 	int ant_number = g_m.ant;
 	int flow_cap = 0;
 	int counter = 0;
@@ -177,20 +188,36 @@ void	calc_throughput(t_pack *pack)
  */
 }
 
-
-int get_path_len(char* path)
+int		minpath(t_list *list)
 {
+	int 	check;
+	t_list	*temp;
+	int		ret;
 
-	int len = 0;
-	int i = 0;
-
-	while(path[i] != '\0')
+	ret = 0;
+	check = 0;
+	temp = list;
+	ret = get_path_len(temp->content);
+	while(temp)
 	{
-		if (path[i] == '#')
-			len++;
-		i++;
+		check = get_path_len(temp->content);
+		if (check < ret)
+			ret = check;
+		temp = temp->next;
 	}
-	return len - 1;
+	return (ret);
+}
+
+
+
+
+void	calc_throughput(t_pack *pack_in)
+{
+    int     ant_t;
+	t_list	*ways;
+	int 	minlist;
+
+
 }
 
 void	get_pack()
@@ -212,27 +239,13 @@ void	get_pack()
 	{
 		ways_n = g_m.apath;
 		pack[i].parll = ft_lstnew(ways->content, ways->content_size);
+//		pack[i].parll->ant_t = 0;
 		pathfinder(pack[i].parll, ways_n);
 		calc_throughput(&pack[i]);
 		i++;
 		ways = ways->next;
 	}
-	/*
-	while (pack[0].parll)
-	{
-		printf("%s|\n", pack[0].parll->content);
-		pack[0].parll = pack[0].parll->next;
-	}*/
+
 }
-//	while(ways)
-//	{
-//		ways_n = g_m.apath;
-//		while(ways_n)
-//		{
-//			pathfinder(ways, ways_n);
-//			ways_n = ways_n->next;
-//		}
-//		ways = ways->next;
-//	}
 
 
