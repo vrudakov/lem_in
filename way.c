@@ -188,21 +188,24 @@ void	calc_throughput_t(t_pack *pack)
  */
 }
 
-int		minpath(t_list *list)
+int		minpath(t_list *list, int *iarr)
 {
 	int 	check;
 	t_list	*temp;
 	int		ret;
+	int 	i;
 
+	i = 0;
 	ret = 0;
 	check = 0;
 	temp = list;
-	ret = get_path_len(temp->content);
+	ret = get_path_len(temp->content) + iarr[i];
 	while(temp)
 	{
-		check = get_path_len(temp->content);
+		check = get_path_len(temp->content) + iarr[i];
 		if (check < ret)
 			ret = check;
+		i++;
 		temp = temp->next;
 	}
 	return (ret);
@@ -223,16 +226,22 @@ void	calc_throughput(t_pack *pack_in)
 	iarr = malloc(sizeof(int) * ft_lstsize(pack_in->parll));
 	while (i < ft_lstsize(pack_in->parll))
 		iarr[i++] = 0;
-	i = 0;
 	ant_t = g_m.ant;
 	pack_in->parll->content;
-	minlist = get_path_len(pack_in->parll->content);
 	while (ant_t)
 	{
+		minlist = minpath(pack_in->parll, iarr);
 		ways = pack_in->parll;
+		i = 0;
 		while (ways)
 		{
-			ways
+			if (get_path_len(ways->content) + iarr[i] <= minlist)
+			{
+				iarr[i] += 1;
+				ant_t--;
+				break ;
+			}
+			ways = ways->next;
 		}
 	}
 
