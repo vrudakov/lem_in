@@ -39,7 +39,7 @@ t_m		g_m;
 
 typedef struct	s_pack
 {
-	t_list	*parll;
+	t_list	*parll; // list of all parallel path
 	int 	cap;
 }				t_pack;
 

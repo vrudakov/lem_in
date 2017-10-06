@@ -216,7 +216,25 @@ void	calc_throughput(t_pack *pack_in)
     int     ant_t;
 	t_list	*ways;
 	int 	minlist;
+	int 	i;
+	int 	*iarr;
 
+	i = 0;
+	iarr = malloc(sizeof(int) * ft_lstsize(pack_in->parll));
+	while (i < ft_lstsize(pack_in->parll))
+		iarr[i++] = 0;
+	i = 0;
+	ant_t = g_m.ant;
+	pack_in->parll->content;
+	minlist = get_path_len(pack_in->parll->content);
+	while (ant_t)
+	{
+		ways = pack_in->parll;
+		while (ways)
+		{
+			ways
+		}
+	}
 
 }
 
