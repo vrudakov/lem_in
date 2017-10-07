@@ -88,42 +88,6 @@ void	map_in()
 		ft_putstr("ERROR: mandatory must be start and end");
 		exit(EXIT_FAILURE);
 	}
-	t_list *plist;
-
-	plist = g_m.in_lst;
-	while (plist)
-	{
-		ft_putstr(plist->content);
-		ft_putstr("\n");
-		plist = plist->next;
-	}
-	plist = g_m.in_lst;
-	t_list *tmp;
-	tmp = g_m.rooms;
-	t_room  *r;
-	/* проверка имен комнат.
-	while (tmp)
-	{
-		r = tmp->content;
-		printf("%s\n", r->name);
-		tmp = tmp->next;
-	}
-	 */
-/*
-	while (tmp)
-	{
-		r = tmp->content;
-		printf("%s -> ", r->name);
-		while (r->n)
-		{
-			printf(" | %s | ", r->n->content);
-			r->n = r->n->next;
-		}
-		printf("\n");
-		tmp = tmp->next;
-	}
-*/
-
 }
 
 int 	calc_room(char *path)
@@ -188,7 +152,6 @@ int		main(void)
 	}
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
-//	parcer(&m);
 	map_in();
 	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
 
@@ -203,7 +166,6 @@ int		main(void)
 	}
 	printf("\n\n");
 	int res;
-
 	get_pack();
 
 }

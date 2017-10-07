@@ -41,6 +41,7 @@ typedef struct	s_pack
 {
 	t_list	*parll; // list of all parallel path
 	int 	cap;
+	int 	*iarr;
 }				t_pack;
 
 
