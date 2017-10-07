@@ -211,7 +211,28 @@ int		minpath(t_list *list, int *iarr)
 	return (ret);
 }
 
+int 	maxpath(t_list *list, int *iarr)
+{
+	int 	check;
+	t_list	*temp;
+	int		ret;
+	int 	i;
 
+	i = 0;
+	ret = 0;
+	check = 0;
+	temp = list;
+	ret = get_path_len(temp->content) + iarr[i];
+	while(temp)
+	{
+		check = get_path_len(temp->content) + iarr[i];
+		if (check > ret && iarr[i] != 0)
+			ret = check;
+		i++;
+		temp = temp->next;
+	}
+	return (ret);
+}
 
 
 void	calc_throughput(t_pack *pack_in)
@@ -227,7 +248,6 @@ void	calc_throughput(t_pack *pack_in)
 	while (i < ft_lstsize(pack_in->parll))
 		iarr[i++] = 0;
 	ant_t = g_m.ant;
-	pack_in->parll->content;
 	while (ant_t)
 	{
 		minlist = minpath(pack_in->parll, iarr);
@@ -241,10 +261,11 @@ void	calc_throughput(t_pack *pack_in)
 				ant_t--;
 				break ;
 			}
+			i++;
 			ways = ways->next;
 		}
 	}
-
+	pack_in->cap = maxpath(pack_in->parll, iarr);
 }
 
 void	get_pack()
@@ -269,6 +290,7 @@ void	get_pack()
 //		pack[i].parll->ant_t = 0;
 		pathfinder(pack[i].parll, ways_n);
 		calc_throughput(&pack[i]);
+		printf("cap -> %d\n", pack[i].cap);
 		i++;
 		ways = ways->next;
 	}
