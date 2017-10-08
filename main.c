@@ -126,7 +126,6 @@ void bubble_sort(t_list *start)
 	{
 		swapped = 0;
 		ptr1 = start;
-
 		while (ptr1->next != lptr)
 		{
 			if (calc_room(ptr1->content) > calc_room(ptr1->next->content))

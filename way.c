@@ -76,14 +76,6 @@ void	pathfinder(t_list	*ways, t_list	*ways_n)
 			ft_lstaddend(&(ways), ft_lstnew( ways_n->content , ft_strlen(ways_n->content) + 1));
 		ways_n = ways_n->next;
 	}
-	printf("set->\n");
-
-	while (ways)
-	{
-		printf(" %s|\n", ways->content );
-		ways = ways->next;
-
-	}
 }
 
 
@@ -180,33 +172,54 @@ void	calc_throughput(t_pack *pack_in)
 	}
 	pack_in->cap = maxpath(pack_in->parll, pack_in->iarr) - 1;
 }
+t_pack	minpack(t_pack *pack,int size)
+{
+	int	i;
+	int m;
+	int cap;
 
-void	print_path()
+	m = 0;
+	i = 0;
+	cap = pack->cap;
+	while (i < size)
+	{
+		if (cap > pack[i].cap)
+		{
+			cap = pack[i].cap;
+			m = i;
+		}
+		i++;
+	}
+	return (pack[m]);
+}
+
+void	print_path(t_pack pack)
+{
+	while
+}
+
 void	get_pack()
 {
 	t_list *ways;
 	t_list *ways_n;
 	t_pack *pack;
-
-	ways = g_m.apath;
-	pack = (t_pack *) malloc(sizeof(t_pack) * ft_lstsize(ways));
 	int i;
 	int size;
 
-	i = 0;
-
+	ways = g_m.apath;
 	size = ft_lstsize(ways);
+	pack = (t_pack *) malloc(sizeof(t_pack) * size);
+	i = 0;
 	while (i < size)
 	{
 		ways_n = g_m.apath;
 		pack[i].parll = ft_lstnew(ways->content, ft_strlen(ways->content) + 1);
 		pathfinder(pack[i].parll, ways_n);
 		calc_throughput(&pack[i]);
-		printf("cap -> %d\n", pack[i].cap);
 		i++;
 		ways = ways->next;
 	}
-	print_path();
+	print_path(minpack(pack, size));
 }
 
 
