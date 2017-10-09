@@ -172,6 +172,7 @@ void	calc_throughput(t_pack *pack_in)
 	}
 	pack_in->cap = maxpath(pack_in->parll, pack_in->iarr) - 1;
 }
+
 t_pack	minpack(t_pack *pack,int size)
 {
 	int	i;
@@ -193,9 +194,47 @@ t_pack	minpack(t_pack *pack,int size)
 	return (pack[m]);
 }
 
+typedef struct 	s_ant
+{
+	int 	room;
+	char 	**r_split;
+	char 	*name;
+	int 	fin;
+}				t_ant;
+
+t_ant	*create_ant(char *path, int	l)
+{
+	t_ant	*ret;
+
+	ret = malloc(sizeof(t_ant));
+	ret->fin = 1;
+	ret->r_split = ft_strsplit(path, '#');
+	ret->room = 0;
+}
+
 void	print_path(t_pack pack)
 {
-	while
+	t_list	*temp;
+	t_list	*ants;
+	int 	i;
+	int 	na;
+
+	i = 0;
+	na = 1;
+	while (g_m.ant)
+	{
+		temp = pack.parll;
+		while (temp)
+		{
+			if (pack.iarr[i] > 0)
+			{
+				ft_lstaddend(&(ants), ft_lstnew(create_ant(temp->content, na), sizeof(t_ant)));
+				na++;
+			}
+			i++;
+			temp = temp->next;
+		}
+	}
 }
 
 void	get_pack()

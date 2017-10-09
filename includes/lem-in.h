@@ -5,6 +5,7 @@
 #define END 2
 #define NONE 0
 # define FILE "./map.txt"
+
 typedef	struct	s_m
 {
 	t_list	*in_lst;
