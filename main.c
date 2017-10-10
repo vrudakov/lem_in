@@ -144,7 +144,7 @@ int		main(void)
 {
 
 
-	g_m.fd = open ("map.txt", O_RDONLY);
+	g_m.fd = open ("map1.txt", O_RDONLY);
 	if(g_m.fd < 0) {
 		ft_putstr("can not open");
 		return (0);

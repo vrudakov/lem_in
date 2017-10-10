@@ -1,4 +1,5 @@
 #include <printf.h>
+#include <zconf.h>
 #include "./includes/lem-in.h"
 
 
@@ -210,6 +211,28 @@ t_ant	*create_ant(char *path, int	l)
 	ret->fin = 1;
 	ret->r_split = ft_strsplit(path, '#');
 	ret->room = 0;
+	ret->name = ft_strjoin("L", ft_itoa(l));
+	return (ret);
+}
+void	ant_guide(t_list *list)
+{
+	t_ant	*ant;
+	while (list)
+	{
+		ant = list->content;
+		if (ft_strcmp(ant->r_split[ant->room], g_m.end))
+		{
+			ant->room++;
+			ft_putstr(ant->name);
+			ft_putchar('-');
+			ft_putstr(ant->r_split[ant->room]);
+			ft_putchar(' ');
+			if (!ft_strcmp(ant->r_split[ant->room], g_m.end))
+				g_m.ant--;
+		}
+		list = list->next;
+	}
+	ft_putchar('\n');
 }
 
 void	print_path(t_pack pack)
@@ -219,11 +242,12 @@ void	print_path(t_pack pack)
 	int 	i;
 	int 	na;
 
-	i = 0;
 	na = 1;
+	ants = NULL;
 	while (g_m.ant)
 	{
 		temp = pack.parll;
+		i = 0;
 		while (temp)
 		{
 			if (pack.iarr[i] > 0)
@@ -234,6 +258,7 @@ void	print_path(t_pack pack)
 			i++;
 			temp = temp->next;
 		}
+		ant_guide(ants);
 	}
 }
 
