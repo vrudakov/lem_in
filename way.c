@@ -2,15 +2,6 @@
 #include <zconf.h>
 #include "./includes/lem-in.h"
 
-
-int	ft_lstsize(t_list *lst)
-{
-	if (lst)
-		return (ft_lstsize(lst->next) + 1);
-	return (0);
-}
-
-
 int		unique(t_list  *start)
 {
 	t_list *ptr1;
@@ -253,6 +244,7 @@ void	print_path(t_pack pack)
 			if (pack.iarr[i] > 0)
 			{
 				ft_lstaddend(&(ants), ft_lstnew(create_ant(temp->content, na), sizeof(t_ant)));
+				pack.iarr[i]--;
 				na++;
 			}
 			i++;

@@ -55,27 +55,29 @@ int		check_room(char *line, int action, t_log *log)
 	return (0);
 }
 
+void	init_struct(t_log *log)
+{
+	log->ac = 0;
+	log->end = 0;
+	log->start = 0;
+	log->lin = 0;
+	log->room = 0;
+}
+
 void	map_in()
 {
 	char	*line;
 	t_log	log;
 
-
-	log.ac = 0;
-	log.end = 0;
-	log.start = 0;
-	log.lin = 0;
-	log.room = 0;
+	init_struct(&log);
 	while (get_next_line(g_m.fd, &line) > 0 /*&& *line*/)
 	{
 		if (!ft_strcmp(line, ""))
 			lemin_error(&g_m, "line can't be empty");
-		if (line[0] == '#') {
+		if (line[0] == '#')
 			check_comment(line, &log);
-		}
-		if ( line[0] != '#' && line[0] != 'L' && g_m.ant != 0) {
+		if ( line[0] != '#' && line[0] != 'L' && g_m.ant != 0)
 			check_room(line, NONE, &log);
-		}
 		if (log.ac == 0)
 			g_m.ant = get_ant_num(line, &log);
 		if (ft_strcmp(line, "##start") && ft_strcmp(line, "##end") &&
@@ -105,66 +107,29 @@ int 	calc_room(char *path)
 	return (i);
 }
 
-void swap(t_list *a, t_list *b)
-{
-	void *temp;
-
-	temp = a->content;
-	a->content = b->content;
-	b->content = temp;
-}
-
-void bubble_sort(t_list *start)
-{
-	int swapped;
-	t_list *ptr1;
-	t_list *lptr;
-
-	lptr = NULL;
-	swapped = 1;
-	while (swapped)
-	{
-		swapped = 0;
-		ptr1 = start;
-		while (ptr1->next != lptr)
-		{
-			if (calc_room(ptr1->content) > calc_room(ptr1->next->content))
-			{
-				swap(ptr1, ptr1->next);
-				swapped = 1;
-			}
-			ptr1 = ptr1->next;
-		}
-		lptr = ptr1;
-	}
-}
 
 
 int		main(void)
 {
-
-
 	g_m.fd = open ("map1.txt", O_RDONLY);
-	if(g_m.fd < 0) {
+	if(g_m.fd < 0)
+	{
 		ft_putstr("can not open");
 		return (0);
 	}
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
 	map_in();
-	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
-
-	t_list *plist;
-	bubble_sort(g_m.apath);
-	plist = g_m.apath;
+	t_list	*plist;
+	plist = g_m.in_lst;
 	while (plist)
 	{
 		ft_putstr(plist->content);
-		ft_putstr("\n");
+		write(1, "\n", 1);
 		plist = plist->next;
 	}
-	printf("\n\n");
-	int res;
+	write(1, "\n", 1);
+	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
+	bubble_sort(g_m.apath);
 	get_pack();
-
 }

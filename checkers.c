@@ -62,7 +62,7 @@ void	check_comment(char *line, t_log *log)
 	{
 		check_start(line, log);
 	}
-	if (__builtin_strcmp(line, "##end") == 0)
+	else if (__builtin_strcmp(line, "##end") == 0)
 	{
 		check_end(line,log);
 	}
