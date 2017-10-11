@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 15:36:07 by vrudakov          #+#    #+#             */
+/*   Updated: 2017/10/11 15:37:54 by vrudakov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <printf.h>
-#include "./includes/lem-in.h"
+#include "includes/lem_in.h"
 
 void	room_err(char **split, t_log *log, int i)
 {
@@ -20,8 +32,8 @@ void	room_err(char **split, t_log *log, int i)
 int		check_room(char *line, int action, t_log *log)
 {
 	char	**split;
-	int i;
-	t_room room;
+	int		i;
+	t_room	room;
 
 	i = 0;
 	split = ft_strsplit(line, ' ');
@@ -38,50 +50,33 @@ int		check_room(char *line, int action, t_log *log)
 	room.name = ft_strdup(split[0]);
 	room.n = NULL;
 	if (action == START)
-	{
 		g_m.start = ft_strdup(split[0]);
-		room.status = START;
-	}
 	if (action == END)
-	{
-		room.status = END;
 		g_m.end = ft_strdup(split[0]);
-	}
-	if (action == NONE)
-		room.status = NONE;
 	free_split(split, i);
-	if (!(ft_lstaddend(&(g_m.rooms), ft_lstnew( &room , sizeof(room)))))
-		lemin_error(&g_m, "File's malloc failure");
+	ft_lstaddend(&(g_m.rooms), ft_lstnew(&room, sizeof(room)));
 	return (0);
 }
 
-void	init_struct(t_log *log)
-{
-	log->ac = 0;
-	log->end = 0;
-	log->start = 0;
-	log->lin = 0;
-	log->room = 0;
-}
-
-void	map_in()
+void	map_in(void)
 {
 	char	*line;
 	t_log	log;
 
 	init_struct(&log);
-	while (get_next_line(g_m.fd, &line) > 0 /*&& *line*/)
+	while (get_next_line(g_m.fd, &line) > 0)
 	{
 		if (!ft_strcmp(line, ""))
 			lemin_error(&g_m, "line can't be empty");
 		if (line[0] == '#')
 			check_comment(line, &log);
-		if ( line[0] != '#' && line[0] != 'L' && g_m.ant != 0)
+		if (line[0] != '#' && line[0] != 'L' && g_m.ant != 0)
 			check_room(line, NONE, &log);
 		if (log.ac == 0)
 			g_m.ant = get_ant_num(line, &log);
 		if (ft_strcmp(line, "##start") && ft_strcmp(line, "##end") &&
-				!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line, ft_strlen(line) + 1))))
+				!(ft_lstaddend(&(g_m.in_lst), ft_lstnew(line,
+					ft_strlen(line) + 1))))
 			lemin_error(&g_m, "File's malloc failure");
 		free(line);
 	}
@@ -92,10 +87,10 @@ void	map_in()
 	}
 }
 
-int 	calc_room(char *path)
+int		calc_room(char *path)
 {
-	char **split;
-	int i;
+	char	**split;
+	int		i;
 
 	i = 0;
 	split = ft_strsplit(path, '#');
@@ -107,12 +102,12 @@ int 	calc_room(char *path)
 	return (i);
 }
 
-
-
 int		main(void)
 {
-	g_m.fd = open ("map1.txt", O_RDONLY);
-	if(g_m.fd < 0)
+	t_list	*plist;
+
+	g_m.fd = open("map.txt", O_RDONLY);
+	if (g_m.fd < 0)
 	{
 		ft_putstr("can not open");
 		return (0);
@@ -120,7 +115,6 @@ int		main(void)
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
 	map_in();
-	t_list	*plist;
 	plist = g_m.in_lst;
 	while (plist)
 	{

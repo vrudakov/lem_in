@@ -1,4 +1,16 @@
-# include "includes/lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 14:08:33 by vrudakov          #+#    #+#             */
+/*   Updated: 2017/10/11 14:52:28 by vrudakov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/lem_in.h"
 
 char	*ft_append(char *s1, char const *s2, size_t len, size_t len2)
 {
@@ -29,9 +41,9 @@ char	*ft_append(char *s1, char const *s2, size_t len, size_t len2)
 
 int		n_in_str(char *path, char *n)
 {
-	char **split;
-	int i;
-	int c;
+	char	**split;
+	int		i;
+	int		c;
 
 	split = ft_strsplit(path, '#');
 	i = 0;
@@ -48,7 +60,7 @@ int		n_in_str(char *path, char *n)
 	return (c);
 }
 
-t_list			*get_node_by_name(char *name)
+t_list	*get_node_by_name(char *name)
 {
 	t_list *temp;
 	t_room *room;
@@ -64,31 +76,31 @@ t_list			*get_node_by_name(char *name)
 	return (NULL);
 }
 
-int	  	find_apath(t_room *room, char *c_path)
+int		find_apath(t_room *room, char *path)
 {
 	t_list	*neighbours;
 	t_room	*neighbour;
 
 	neighbours = room->n;
-	c_path = ft_append(c_path, room->name,
-					 ft_strlen(c_path), ft_strlen(room->name) + 1);
-	c_path = ft_append(c_path, "#", ft_strlen(c_path), 1);
-	if (room->status == END)
+	path = ft_append(path, room->name,
+					ft_strlen(path), ft_strlen(room->name) + 1);
+	path = ft_append(path, "#", ft_strlen(path), 1);
+	if (ft_strcmp(room->name, g_m.end) == 0)
 	{
-		if (!(ft_lstaddend(&(g_m.apath), ft_lstnew(c_path, ft_strlen(c_path) + 1))))
+		if (!(ft_lstaddend(&(g_m.apath), ft_lstnew(path, ft_strlen(path) + 1))))
 			lemin_error(&g_m, "File's malloc failure");
 		return (1);
 	}
 	while (neighbours)
 	{
 		neighbour = get_node_by_name(neighbours->content)->content;
-		if (n_in_str(c_path, neighbour->name))
+		if (n_in_str(path, neighbour->name))
 		{
 			neighbours = neighbours->next;
 			continue ;
 		}
 		neighbours = neighbours->next;
-		find_apath(neighbour, ft_strdup(c_path));
+		find_apath(neighbour, ft_strdup(path));
 	}
 	return (0);
 }

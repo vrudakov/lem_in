@@ -1,8 +1,19 @@
-#include <printf.h>
-#include <zconf.h>
-#include "./includes/lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   way.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 14:12:55 by vrudakov          #+#    #+#             */
+/*   Updated: 2017/10/11 14:33:38 by vrudakov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		unique(t_list  *start)
+#include <printf.h>
+#include "includes/lem_in.h"
+
+int		unique(t_list *start)
 {
 	t_list *ptr1;
 	t_list *ptr2;
@@ -22,28 +33,28 @@ int		unique(t_list  *start)
 	return (1);
 }
 
-int		parallels(t_list	*ways, t_list	*ways_n)
+int		parallels(t_list *ways, t_list *ways_n)
 {
-	char *all;
-	char **split;
+	char	*all;
+	char	**s;
 	t_list	*temp;
-	int i;
+	int		i;
 
 	temp = NULL;
 	all = ft_strjoin(ways->content, ways_n->content);
-	split = ft_strsplit(all, '#');
+	s = ft_strsplit(all, '#');
 	i = 0;
-	while (split[i] != NULL)
+	while (s[i] != NULL)
 	{
-		if (ft_strcmp(split[i], g_m.start) == 0 || ft_strcmp(split[i], g_m.end) == 0 )
+		if (ft_strcmp(s[i], g_m.start) == 0 || ft_strcmp(s[i], g_m.end) == 0)
 		{
-			free(split[i]);
+			free(s[i]);
 			i++;
 			continue ;
 		}
-		if (!(ft_lstaddend(&(temp), ft_lstnew(split[i], ft_strlen(split[i]) + 1))))
+		if (!(ft_lstaddend(&(temp), ft_lstnew(s[i], ft_strlen(s[i]) + 1))))
 			lemin_error(&g_m, "File's malloc failure");
-		free(split[i]);
+		free(s[i]);
 		i++;
 	}
 	return (unique(temp));
@@ -53,92 +64,19 @@ int		check_parall(t_list *list, t_list *test)
 {
 	while (list)
 	{
-		if(!parallels(list, test))
+		if (!parallels(list, test))
 			return (0);
 		list = list->next;
 	}
 	return (1);
 }
 
-void	pathfinder(t_list	*ways, t_list	*ways_n)
-{
-	while(ways_n)
-	{
-		if (check_parall(ways, ways_n))
-			ft_lstaddend(&(ways), ft_lstnew( ways_n->content , ft_strlen(ways_n->content) + 1));
-		ways_n = ways_n->next;
-	}
-}
-
-
-int get_path_len(const char* path)
-{
-
-	int len = 0;
-	int i = 0;
-
-	while(path[i] != '\0')
-	{
-		if (path[i] == '#')
-			len++;
-		i++;
-	}
-	return len - 1;
-}
-
-int		minpath(t_list *list,const int *iarr)
-{
-	int 	check;
-	t_list	*temp;
-	int		ret;
-	int 	i;
-
-	i = 0;
-	ret = 0;
-	check = 0;
-	temp = list;
-	ret = get_path_len(temp->content) + iarr[i];
-	while(temp)
-	{
-		check = get_path_len(temp->content) + iarr[i];
-		if (check < ret)
-			ret = check;
-		i++;
-		temp = temp->next;
-	}
-	return (ret);
-}
-
-int 	maxpath(t_list *list,const int *iarr)
-{
-	int 	check;
-	t_list	*temp;
-	int		ret;
-	int 	i;
-
-	i = 0;
-	ret = 0;
-	check = 0;
-	temp = list;
-	ret = 1;
-	while(temp)
-	{
-		check = get_path_len(temp->content) + iarr[i];
-		if (check > ret && iarr[i] != 0)
-			ret = check;
-		i++;
-		temp = temp->next;
-	}
-	return (ret);
-}
-
-
 void	calc_throughput(t_pack *pack_in)
 {
-    int     ant_t;
+	int		ant_t;
 	t_list	*ways;
-	int 	minlist;
-	int 	i;
+	int		minlist;
+	int		i;
 
 	i = 0;
 	pack_in->iarr = malloc(sizeof(int) * ft_lstsize(pack_in->parll));
@@ -165,7 +103,7 @@ void	calc_throughput(t_pack *pack_in)
 	pack_in->cap = maxpath(pack_in->parll, pack_in->iarr) - 1;
 }
 
-t_pack	minpack(t_pack *pack,int size)
+t_pack	minpack(t_pack *pack, int size)
 {
 	int	i;
 	int m;
@@ -186,85 +124,19 @@ t_pack	minpack(t_pack *pack,int size)
 	return (pack[m]);
 }
 
-typedef struct 	s_ant
-{
-	int 	room;
-	char 	**r_split;
-	char 	*name;
-	int 	fin;
-}				t_ant;
 
-t_ant	*create_ant(char *path, int	l)
-{
-	t_ant	*ret;
 
-	ret = malloc(sizeof(t_ant));
-	ret->fin = 1;
-	ret->r_split = ft_strsplit(path, '#');
-	ret->room = 0;
-	ret->name = ft_strjoin("L", ft_itoa(l));
-	return (ret);
-}
-void	ant_guide(t_list *list)
+void	get_pack(void)
 {
-	t_ant	*ant;
-	while (list)
-	{
-		ant = list->content;
-		if (ft_strcmp(ant->r_split[ant->room], g_m.end))
-		{
-			ant->room++;
-			ft_putstr(ant->name);
-			ft_putchar('-');
-			ft_putstr(ant->r_split[ant->room]);
-			ft_putchar(' ');
-			if (!ft_strcmp(ant->r_split[ant->room], g_m.end))
-				g_m.ant--;
-		}
-		list = list->next;
-	}
-	ft_putchar('\n');
-}
-
-void	print_path(t_pack pack)
-{
-	t_list	*temp;
-	t_list	*ants;
-	int 	i;
-	int 	na;
-
-	na = 1;
-	ants = NULL;
-	while (g_m.ant)
-	{
-		temp = pack.parll;
-		i = 0;
-		while (temp)
-		{
-			if (pack.iarr[i] > 0)
-			{
-				ft_lstaddend(&(ants), ft_lstnew(create_ant(temp->content, na), sizeof(t_ant)));
-				pack.iarr[i]--;
-				na++;
-			}
-			i++;
-			temp = temp->next;
-		}
-		ant_guide(ants);
-	}
-}
-
-void	get_pack()
-{
-	t_list *ways;
-	t_list *ways_n;
-	t_pack *pack;
-	int i;
-	int size;
+	t_list	*ways;
+	t_list	*ways_n;
+	t_pack	*pack;
+	int		i;
+	int		size;
 
 	ways = g_m.apath;
 	size = ft_lstsize(ways);
-	pack = (t_pack *) malloc(sizeof(t_pack) * size);
+	pack = (t_pack *)malloc(sizeof(t_pack) * size);
 	i = 0;
 	while (i < size)
 	{
@@ -277,5 +149,3 @@ void	get_pack()
 	}
 	print_path(minpack(pack, size));
 }
-
-

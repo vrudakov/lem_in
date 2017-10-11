@@ -1,12 +1,30 @@
-#include "./includes/lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   serve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 14:34:39 by vrudakov          #+#    #+#             */
+/*   Updated: 2017/10/11 14:57:29 by vrudakov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/lem_in.h"
 
 int		lemin_error(t_m *m, char *s)
 {
 	ft_putstr("ERROR: ");
 	ft_putendl(s);
-//	free_all(m->list);
 	exit(-1);
-	return (-1);
+}
+
+void	init_struct(t_log *log)
+{
+	log->ac = 0;
+	log->end = 0;
+	log->start = 0;
+	log->room = 0;
 }
 
 void	free_split(char **split, int i)
@@ -45,16 +63,19 @@ int		get_ant_num(char *ant_num, t_log *log)
 	return (int)(tmp);
 }
 
-int		find_room(char *room, char *neighbor, int s) {
+int		find_room(char *room, char *neighbor, int s)
+{
 	t_list *tmp;
 	t_room *test;
 
 	tmp = g_m.rooms;
-	while (tmp) {
+	while (tmp)
+	{
 		test = tmp->content;
-		if (!ft_strcmp(test->name, room)) {
+		if (!ft_strcmp(test->name, room))
+		{
 			if (!(ft_lstaddend(&(test->n),
-							   ft_lstnew(neighbor, ft_strlen(neighbor) + 1))))
+					ft_lstnew(neighbor, ft_strlen(neighbor) + 1))))
 				lemin_error(&g_m, "File's malloc failure");
 			if (s != 0)
 				find_room(neighbor, room, 0);

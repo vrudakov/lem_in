@@ -1,6 +1,18 @@
-#include "./includes/lem-in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 14:54:28 by vrudakov          #+#    #+#             */
+/*   Updated: 2017/10/11 14:58:14 by vrudakov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-const void swap(t_list *a, t_list *b)
+#include "includes/lem_in.h"
+
+static void	swap(t_list *a, t_list *b)
 {
 	void *temp;
 
@@ -9,11 +21,11 @@ const void swap(t_list *a, t_list *b)
 	b->content = temp;
 }
 
-void bubble_sort(t_list *start)
+void		bubble_sort(t_list *start)
 {
-	int swapped;
-	t_list *ptr1;
-	t_list *lptr;
+	int		swapped;
+	t_list	*ptr1;
+	t_list	*lptr;
 
 	lptr = NULL;
 	swapped = 1;

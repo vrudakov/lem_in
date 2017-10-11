@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
 
         main.c
-        includes/lem-in.h checkers.c serve.c algo.c way.c libft/src/ft_lstsize.c sort.c)
+        includes/lem_in.h checkers.c serve.c algo.c way.c sort.c path.c ant.c)
 
 add_executable(lem_in ${SOURCE_FILES})
 
