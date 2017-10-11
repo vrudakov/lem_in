@@ -6,7 +6,7 @@
 /*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 10:18:50 by vrudakov          #+#    #+#             */
-/*   Updated: 2017/08/30 18:58:25 by vrudakov         ###   ########.fr       */
+/*   Updated: 2017/10/11 18:02:07 by vrudakov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef	struct	s_list
 {
 	void			*content;
 	size_t			content_size;
-//	int 			ant_t;
 	struct s_list	*next;
 }				t_list;
 

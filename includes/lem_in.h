@@ -41,6 +41,7 @@ typedef	struct	s_log
 	int		start;
 	int		end;
 	int		room;
+	int 	link;
 
 }				t_log;
 

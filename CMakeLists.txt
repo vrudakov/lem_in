@@ -14,7 +14,7 @@ set(SOURCE_FILES
         src/path.c
         src/ant.c
         includes/lem_in.h
-        )
+        src/path_processor.c)
 
 add_executable(lem_in ${SOURCE_FILES})
 
