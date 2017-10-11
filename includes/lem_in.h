@@ -66,7 +66,7 @@ void			check_start(char *line, t_log *log);
 void			check_connection(char	*conn);
 int				find_room(char *room, char *neighbor, int s);
 void			free_split(char **split, int i);
-int				lemin_error(t_m *m, char *s);
+int				lemin_error(char *s);
 int				check_room(char *line, int action, t_log *log);
 int				check_room_list(char *in_room);
 int				get_ant_num(char *ant_num, t_log *log);
