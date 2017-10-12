@@ -27,6 +27,7 @@ typedef	struct	s_m
 	char	*end;
 	int		ant;
 	int		fd;
+	int 	pos_way;
 }				t_m;
 
 typedef struct	s_room
@@ -66,7 +67,7 @@ void			check_end(char *line, t_log *log);
 void			check_start(char *line, t_log *log);
 void			check_connection(char	*conn);
 int				find_room(char *room, char *neighbor, int s);
-void			free_split(char **split, int i);
+void			free_split(char **split);
 int				lemin_error(char *s);
 int				check_room(char *line, int action, t_log *log);
 int				check_room_list(char *in_room);

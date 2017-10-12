@@ -18,13 +18,19 @@ void	room_err(char **split, t_log *log, int i)
 	if (i != 3 || !ft_isdigitstr(split[1]) || !ft_isdigitstr(split[2]))
 	{
 		ft_putstr("ERROR: wrong rooms naming\n");
-		free_split(split, i);
+		free_split(split);
 		exit(EXIT_FAILURE);
 	}
 	if (log->room == 1)
 	{
 		ft_putstr("ERROR: usage:  number_of_ants -> the_rooms -> the_links\n");
-		free_split(split, i);
+		free_split(split);
+		exit(EXIT_FAILURE);
+	}
+	if (ft_strchr(split[0], '#') || ft_strchr(split[0], '-'))
+	{
+		ft_putstr("ERROR: name of room cant contain '-' and '#' characters\n");
+		free_split(split);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -44,6 +50,7 @@ int		check_room(char *line, int action, t_log *log)
 		check_connection(split[0]);
 		log->room = 1;
 		log->link = 1;
+		free_split(split);
 		return (1);
 	}
 	room_err(split, log, i);
@@ -54,7 +61,7 @@ int		check_room(char *line, int action, t_log *log)
 		g_m.start = ft_strdup(split[0]);
 	if (action == END)
 		g_m.end = ft_strdup(split[0]);
-	free_split(split, i);
+	free_split(split);
 	ft_lstaddend(&(g_m.rooms), ft_lstnew(&room, sizeof(room)));
 	return (0);
 }
@@ -86,6 +93,7 @@ void	map_in(void)
 		ft_putstr("ERROR: mandatory must be start, end and links");
 		exit(EXIT_FAILURE);
 	}
+	free(line);
 }
 
 int		calc_room(char *path)
@@ -110,6 +118,8 @@ int		main(void)
 	g_m.fd = open("map.txt", O_RDONLY);
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
+	g_m.pos_way = 0;
+	plist = NULL;
 	map_in();
 	plist = g_m.in_lst;
 	while (plist)
@@ -120,6 +130,11 @@ int		main(void)
 	}
 	write(1, "\n", 1);
 	find_apath(get_node_by_name(g_m.start)->content, ft_strnew(1));
+	if (g_m.pos_way == 0)
+	{
+		ft_putstr("ERROR: No possible solution");
+		exit(EXIT_FAILURE);
+	}
 	bubble_sort(g_m.apath);
 	get_pack();
 }

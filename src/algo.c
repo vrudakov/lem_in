@@ -54,9 +54,9 @@ int		n_in_str(char *path, char *n)
 		{
 			c = 1;
 		}
-		free(split[i]);
 		i++;
 	}
+	free_split(split);
 	return (c);
 }
 
@@ -87,8 +87,10 @@ int		find_apath(t_room *room, char *path)
 	path = ft_append(path, "#", ft_strlen(path), 1);
 	if (ft_strcmp(room->name, g_m.end) == 0)
 	{
+		g_m.pos_way = 1;
 		if (!(ft_lstaddend(&(g_m.apath), ft_lstnew(path, ft_strlen(path) + 1))))
 			lemin_error("File's malloc failure");
+		free(path);
 		return (1);
 	}
 	while (neighbours)

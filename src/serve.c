@@ -28,11 +28,15 @@ void	init_struct(t_log *log)
 	log->link = 0;
 }
 
-void	free_split(char **split, int i)
+void	free_split(char **split)
 {
 	int	c;
+	int i;
 
 	c = 0;
+	i = 0;
+	while (split[i] != NULL)
+		i++;
 	if (i > 0)
 	{
 		while (c < i)
@@ -41,6 +45,7 @@ void	free_split(char **split, int i)
 			c++;
 		}
 	}
+	free(split);
 }
 
 int		get_ant_num(char *ant_num, t_log *log)

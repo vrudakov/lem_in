@@ -91,8 +91,9 @@ void	check_connection(char *conn)
 	if (i != 2)
 	{
 		ft_putstr("ERROR: wrong rooms linkage\n");
-		free_split(split, i);
+		free_split(split);
 		exit(EXIT_FAILURE);
 	}
 	find_room(split[0], split[1], 1);
+	free_split(split);
 }
