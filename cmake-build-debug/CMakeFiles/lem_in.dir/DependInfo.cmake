@@ -4,11 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/nfs/2016/v/vrudakov/lemin/algo.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/algo.c.o"
-  "/nfs/2016/v/vrudakov/lemin/checkers.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/checkers.c.o"
-  "/nfs/2016/v/vrudakov/lemin/main.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/main.c.o"
-  "/nfs/2016/v/vrudakov/lemin/serve.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/serve.c.o"
-  "/nfs/2016/v/vrudakov/lemin/way.c" "/nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/lem_in.dir/way.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/algo.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/algo.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/ant.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/ant.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/checkers.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/checkers.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/main.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/main.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/path.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/path.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/path_processor.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/path_processor.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/serve.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/serve.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/sort.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/sort.c.o"
+  "/nfs/2016/v/vrudakov/lemin_norm/src/way.c" "/nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/lem_in.dir/src/way.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

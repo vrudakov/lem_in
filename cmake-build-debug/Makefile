@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /nfs/2016/v/vrudakov/lemin
+CMAKE_SOURCE_DIR = /nfs/2016/v/vrudakov/lemin_norm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /nfs/2016/v/vrudakov/lemin/cmake-build-debug
+CMAKE_BINARY_DIR = /nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles /nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles /nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/v/vrudakov/lemin/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/v/vrudakov/lemin_norm/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,140 +123,248 @@ lem_in/fast:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/build
 .PHONY : lem_in/fast
 
-algo.o: algo.c.o
+src/algo.o: src/algo.c.o
 
-.PHONY : algo.o
-
-# target to build an object file
-algo.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/algo.c.o
-.PHONY : algo.c.o
-
-algo.i: algo.c.i
-
-.PHONY : algo.i
-
-# target to preprocess a source file
-algo.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/algo.c.i
-.PHONY : algo.c.i
-
-algo.s: algo.c.s
-
-.PHONY : algo.s
-
-# target to generate assembly for a file
-algo.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/algo.c.s
-.PHONY : algo.c.s
-
-checkers.o: checkers.c.o
-
-.PHONY : checkers.o
+.PHONY : src/algo.o
 
 # target to build an object file
-checkers.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.o
-.PHONY : checkers.c.o
+src/algo.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/algo.c.o
+.PHONY : src/algo.c.o
 
-checkers.i: checkers.c.i
+src/algo.i: src/algo.c.i
 
-.PHONY : checkers.i
+.PHONY : src/algo.i
 
 # target to preprocess a source file
-checkers.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.i
-.PHONY : checkers.c.i
+src/algo.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/algo.c.i
+.PHONY : src/algo.c.i
 
-checkers.s: checkers.c.s
+src/algo.s: src/algo.c.s
 
-.PHONY : checkers.s
+.PHONY : src/algo.s
 
 # target to generate assembly for a file
-checkers.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checkers.c.s
-.PHONY : checkers.c.s
+src/algo.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/algo.c.s
+.PHONY : src/algo.c.s
 
-main.o: main.c.o
+src/ant.o: src/ant.c.o
 
-.PHONY : main.o
+.PHONY : src/ant.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/main.c.o
-.PHONY : main.c.o
+src/ant.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/ant.c.o
+.PHONY : src/ant.c.o
 
-main.i: main.c.i
+src/ant.i: src/ant.c.i
 
-.PHONY : main.i
+.PHONY : src/ant.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/main.c.i
-.PHONY : main.c.i
+src/ant.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/ant.c.i
+.PHONY : src/ant.c.i
 
-main.s: main.c.s
+src/ant.s: src/ant.c.s
 
-.PHONY : main.s
+.PHONY : src/ant.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/main.c.s
-.PHONY : main.c.s
+src/ant.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/ant.c.s
+.PHONY : src/ant.c.s
 
-serve.o: serve.c.o
+src/checkers.o: src/checkers.c.o
 
-.PHONY : serve.o
+.PHONY : src/checkers.o
 
 # target to build an object file
-serve.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.o
-.PHONY : serve.c.o
+src/checkers.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/checkers.c.o
+.PHONY : src/checkers.c.o
 
-serve.i: serve.c.i
+src/checkers.i: src/checkers.c.i
 
-.PHONY : serve.i
+.PHONY : src/checkers.i
 
 # target to preprocess a source file
-serve.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.i
-.PHONY : serve.c.i
+src/checkers.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/checkers.c.i
+.PHONY : src/checkers.c.i
 
-serve.s: serve.c.s
+src/checkers.s: src/checkers.c.s
 
-.PHONY : serve.s
+.PHONY : src/checkers.s
 
 # target to generate assembly for a file
-serve.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/serve.c.s
-.PHONY : serve.c.s
+src/checkers.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/checkers.c.s
+.PHONY : src/checkers.c.s
 
-way.o: way.c.o
+src/main.o: src/main.c.o
 
-.PHONY : way.o
+.PHONY : src/main.o
 
 # target to build an object file
-way.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/way.c.o
-.PHONY : way.c.o
+src/main.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/main.c.o
+.PHONY : src/main.c.o
 
-way.i: way.c.i
+src/main.i: src/main.c.i
 
-.PHONY : way.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-way.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/way.c.i
-.PHONY : way.c.i
+src/main.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/main.c.i
+.PHONY : src/main.c.i
 
-way.s: way.c.s
+src/main.s: src/main.c.s
 
-.PHONY : way.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-way.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/way.c.s
-.PHONY : way.c.s
+src/main.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/main.c.s
+.PHONY : src/main.c.s
+
+src/path.o: src/path.c.o
+
+.PHONY : src/path.o
+
+# target to build an object file
+src/path.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path.c.o
+.PHONY : src/path.c.o
+
+src/path.i: src/path.c.i
+
+.PHONY : src/path.i
+
+# target to preprocess a source file
+src/path.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path.c.i
+.PHONY : src/path.c.i
+
+src/path.s: src/path.c.s
+
+.PHONY : src/path.s
+
+# target to generate assembly for a file
+src/path.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path.c.s
+.PHONY : src/path.c.s
+
+src/path_processor.o: src/path_processor.c.o
+
+.PHONY : src/path_processor.o
+
+# target to build an object file
+src/path_processor.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path_processor.c.o
+.PHONY : src/path_processor.c.o
+
+src/path_processor.i: src/path_processor.c.i
+
+.PHONY : src/path_processor.i
+
+# target to preprocess a source file
+src/path_processor.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path_processor.c.i
+.PHONY : src/path_processor.c.i
+
+src/path_processor.s: src/path_processor.c.s
+
+.PHONY : src/path_processor.s
+
+# target to generate assembly for a file
+src/path_processor.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/path_processor.c.s
+.PHONY : src/path_processor.c.s
+
+src/serve.o: src/serve.c.o
+
+.PHONY : src/serve.o
+
+# target to build an object file
+src/serve.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/serve.c.o
+.PHONY : src/serve.c.o
+
+src/serve.i: src/serve.c.i
+
+.PHONY : src/serve.i
+
+# target to preprocess a source file
+src/serve.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/serve.c.i
+.PHONY : src/serve.c.i
+
+src/serve.s: src/serve.c.s
+
+.PHONY : src/serve.s
+
+# target to generate assembly for a file
+src/serve.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/serve.c.s
+.PHONY : src/serve.c.s
+
+src/sort.o: src/sort.c.o
+
+.PHONY : src/sort.o
+
+# target to build an object file
+src/sort.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/sort.c.o
+.PHONY : src/sort.c.o
+
+src/sort.i: src/sort.c.i
+
+.PHONY : src/sort.i
+
+# target to preprocess a source file
+src/sort.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/sort.c.i
+.PHONY : src/sort.c.i
+
+src/sort.s: src/sort.c.s
+
+.PHONY : src/sort.s
+
+# target to generate assembly for a file
+src/sort.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/sort.c.s
+.PHONY : src/sort.c.s
+
+src/way.o: src/way.c.o
+
+.PHONY : src/way.o
+
+# target to build an object file
+src/way.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/way.c.o
+.PHONY : src/way.c.o
+
+src/way.i: src/way.c.i
+
+.PHONY : src/way.i
+
+# target to preprocess a source file
+src/way.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/way.c.i
+.PHONY : src/way.c.i
+
+src/way.s: src/way.c.s
+
+.PHONY : src/way.s
+
+# target to generate assembly for a file
+src/way.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/way.c.s
+.PHONY : src/way.c.s
 
 # Help Target
 help:
@@ -267,21 +375,33 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lem_in"
-	@echo "... algo.o"
-	@echo "... algo.i"
-	@echo "... algo.s"
-	@echo "... checkers.o"
-	@echo "... checkers.i"
-	@echo "... checkers.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... serve.o"
-	@echo "... serve.i"
-	@echo "... serve.s"
-	@echo "... way.o"
-	@echo "... way.i"
-	@echo "... way.s"
+	@echo "... src/algo.o"
+	@echo "... src/algo.i"
+	@echo "... src/algo.s"
+	@echo "... src/ant.o"
+	@echo "... src/ant.i"
+	@echo "... src/ant.s"
+	@echo "... src/checkers.o"
+	@echo "... src/checkers.i"
+	@echo "... src/checkers.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/path.o"
+	@echo "... src/path.i"
+	@echo "... src/path.s"
+	@echo "... src/path_processor.o"
+	@echo "... src/path_processor.i"
+	@echo "... src/path_processor.s"
+	@echo "... src/serve.o"
+	@echo "... src/serve.i"
+	@echo "... src/serve.s"
+	@echo "... src/sort.o"
+	@echo "... src/sort.i"
+	@echo "... src/sort.s"
+	@echo "... src/way.o"
+	@echo "... src/way.i"
+	@echo "... src/way.s"
 .PHONY : help
 
 

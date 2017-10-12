@@ -1,9 +1,13 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lem_in.dir/main.c.o"
-  "CMakeFiles/lem_in.dir/checkers.c.o"
-  "CMakeFiles/lem_in.dir/serve.c.o"
-  "CMakeFiles/lem_in.dir/algo.c.o"
-  "CMakeFiles/lem_in.dir/way.c.o"
+  "CMakeFiles/lem_in.dir/src/main.c.o"
+  "CMakeFiles/lem_in.dir/src/checkers.c.o"
+  "CMakeFiles/lem_in.dir/src/serve.c.o"
+  "CMakeFiles/lem_in.dir/src/algo.c.o"
+  "CMakeFiles/lem_in.dir/src/way.c.o"
+  "CMakeFiles/lem_in.dir/src/sort.c.o"
+  "CMakeFiles/lem_in.dir/src/path.c.o"
+  "CMakeFiles/lem_in.dir/src/ant.c.o"
+  "CMakeFiles/lem_in.dir/src/path_processor.c.o"
   "lem_in.pdb"
   "lem_in"
 )
