@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 15:00:47 by vrudakov          #+#    #+#             */
-/*   Updated: 2017/10/11 15:07:06 by vrudakov         ###   ########.fr       */
+/*   Updated: 2017/10/14 20:59:05 by vrudakov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef	struct	s_m
 	char	*end;
 	int		ant;
 	int		fd;
-	int 	pos_way;
+	int		pos_way;
 }				t_m;
 
 typedef struct	s_room
@@ -42,7 +42,7 @@ typedef	struct	s_log
 	int		start;
 	int		end;
 	int		room;
-	int 	link;
+	int		link;
 
 }				t_log;
 
@@ -69,13 +69,13 @@ void			check_connection(char	*conn);
 int				find_room(char *room, char *neighbor, int s);
 void			free_split(char **split);
 int				lemin_error(char *s);
-int				check_room(char *line, int action, t_log *log);
+int				check_room(char *line, int action, t_log *log, int i);
 int				check_room_list(char *in_room);
 int				get_ant_num(char *ant_num, t_log *log);
 
 t_list			*get_node_by_name(char *name);
 int				find_apath(t_room *room, char *c_path);
-void			get_pack();
+void			get_pack(int i);
 int				calc_room(char *path);
 void			bubble_sort(t_list *start);
 int				parallels(t_list	*ways, t_list	*ways_n);
@@ -86,6 +86,6 @@ int				maxpath(t_list *list, const int *iarr);
 int				get_path_len(const char *path);
 void			pathfinder(t_list *ways, t_list *ways_n);
 int				check_parall(t_list *list, t_list *test);
-void			print_path(t_pack pack);
+void			print_path(t_pack pack, int i, int na);
 void			free_list(void *mem, size_t size);
 #endif
