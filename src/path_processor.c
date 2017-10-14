@@ -12,6 +12,13 @@
 
 #include "../includes/lem_in.h"
 
+void	free_list(void *mem, size_t size)
+{
+	(void)size;
+	if (mem)
+		free(mem);
+}
+
 int		unique(t_list *start)
 {
 	t_list *ptr1;
@@ -24,11 +31,15 @@ int		unique(t_list *start)
 		while (ptr2 != NULL)
 		{
 			if (ft_strcmp(ptr1->content, ptr2->content) == 0)
+			{
+				ft_lstdel(&start, free_list);
 				return (0);
+			}
 			ptr2 = ptr2->next;
 		}
 		ptr1 = ptr1->next;
 	}
+	ft_lstdel(&start, free_list);
 	return (1);
 }
 
@@ -47,14 +58,14 @@ int		parallels(t_list *ways, t_list *ways_n)
 	{
 		if (ft_strcmp(s[i], g_m.start) == 0 || ft_strcmp(s[i], g_m.end) == 0)
 		{
-			free(s[i]);
 			i++;
 			continue ;
 		}
 		if (!(ft_lstaddend(&(temp), ft_lstnew(s[i], ft_strlen(s[i]) + 1))))
 			lemin_error("File's malloc failure");
-		free(s[i]);
 		i++;
 	}
+	free_split(s);
+	free(all);
 	return (unique(temp));
 }

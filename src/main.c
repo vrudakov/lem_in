@@ -115,7 +115,7 @@ int		main(void)
 {
 	t_list	*plist;
 
-	g_m.fd = open("map.txt", O_RDONLY);
+	g_m.fd = open("map1.txt", O_RDONLY);
 	g_m.in_lst = NULL;
 	g_m.ant = 0;
 	g_m.pos_way = 0;
@@ -137,4 +137,5 @@ int		main(void)
 	}
 	bubble_sort(g_m.apath);
 	get_pack();
+	sleep(50);
 }

@@ -87,5 +87,5 @@ int				get_path_len(const char *path);
 void			pathfinder(t_list *ways, t_list *ways_n);
 int				check_parall(t_list *list, t_list *test);
 void			print_path(t_pack pack);
-
+void			free_list(void *mem, size_t size);
 #endif

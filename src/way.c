@@ -95,4 +95,5 @@ void	get_pack(void)
 		ways = ways->next;
 	}
 	print_path(minpack(pack, size));
+	free(pack);
 }
