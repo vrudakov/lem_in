@@ -6,7 +6,7 @@ OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 INC_PATH = ./includes/ ./libft/includes/
 OBJ_NAME = $(SRC_NAME:.c=.o)
-SRC_NAME = serve.c algo.c way.c sort.c path.c ant.c checkers.c path_processor.c main.c 
+SRC_NAME = serve.c algo.c way.c sort.c path.c ant.c checkers.c path_processor.c free_func.c main.c 
 LIBFT = libft.a
 LIB_NAME = -lft
 

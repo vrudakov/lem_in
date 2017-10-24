@@ -6,7 +6,7 @@
 /*   By: vrudakov <vrudakov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 15:00:47 by vrudakov          #+#    #+#             */
-/*   Updated: 2017/10/14 20:59:05 by vrudakov         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:17:17 by vrudakov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef	struct	s_m
 	int		ant;
 	int		fd;
 	int		pos_way;
+	int		n_ways;
 }				t_m;
 
 typedef struct	s_room
@@ -88,4 +89,6 @@ void			pathfinder(t_list *ways, t_list *ways_n);
 int				check_parall(t_list *list, t_list *test);
 void			print_path(t_pack pack, int i, int na);
 void			free_list(void *mem, size_t size);
+void			free_pack(t_pack *pack, int n);
+void			free_ant(t_list **ant);
 #endif
