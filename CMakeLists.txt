@@ -1,21 +1,19 @@
-cmake_minimum_required(VERSION 3.7)
-project(lem_in)
+cmake_minimum_required(VERSION 3.8)
+project(vrudakov_lemin)
 
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-
-        src/main.c
-        src/checkers.c
-        src/serve.c
-        src/algo.c
-        src/way.c
-        src/sort.c
-        src/path.c
-        src/ant.c
         includes/lem_in.h
-        src/path_processor.c)
+        src/algo.c
+        src/ant.c
+        src/checkers.c
+        src/main.c
+        src/path.c
+        src/path_processor.c
+        src/serve.c
+        src/sort.c
+        src/way.c src/free_func.c)
 
-add_executable(lem_in ${SOURCE_FILES})
-
-target_link_libraries(lem_in ${CMAKE_SOURCE_DIR}/libft/libft.a)
+add_executable(vrudakov_lemin ${SOURCE_FILES})
+target_link_libraries(vrudakov_lemin ${CMAKE_SOURCE_DIR}/libft/libft.a)
